@@ -1,0 +1,331 @@
+🚇 Module 1 - AI Passenger Prediction
+
+User enters:
+
+Source Station
+Destination Station
+Date
+Time (for example, 08:20)
+
+The system predicts:
+
+Expected Passenger Count
+
+Crowd Level
+
+Expected Waiting Time
+
+Confidence
+🚇 Module 2 - Smart Route Assistant
+
+Instead of only finding the shortest route, we'll consider crowd levels.
+
+Example:
+
+Source:
+Whitefield
+
+Destination:
+Majestic
+
+Current Time:
+08:20
+
+Output:
+
+Route:
+Purple Line
+
+Travel Time:
+43 minutes
+
+Crowd:
+High
+
+Alternative Route:
+Medium Crowd
+🚇 Module 3 - Best Travel Time
+
+Example:
+
+You selected:
+
+08:20
+
+Output:
+
+Crowd:
+High
+
+Better Time:
+08:45
+
+Expected Crowd:
+Medium
+
+Estimated waiting reduced by 6 minutes.
+🚇 Module 4 - AI Metro Assistant
+
+Like ChatGPT, but specialized for the metro.
+
+Examples:
+
+Which platform should I go to?
+
+Which line goes to Silk Institute?
+
+Is Majestic crowded now?
+
+Which coach will be less crowded?
+
+🚇 Module 5 - Crowd Heatmap
+
+Imagine the Bengaluru metro map.
+
+Stations change color:
+
+🟢 Low
+
+🟡 Medium
+
+🟠 High
+
+🔴 Very High
+
+This would be a great visual feature.
+
+🚇 Module 6 - Admin Dashboard
+
+For metro authorities.
+
+Display:
+
+Passenger trend
+Station occupancy
+Peak hours
+Overloaded stations
+Daily reports
+🚇 Module 7 - Future Prediction
+
+Example:
+
+Tomorrow
+
+8:20 AM
+
+Majestic
+
+Expected Crowd:
+Very High
+
+Authorities can prepare additional staff.
+
+🚇 Module 8 - Smart Notifications
+
+User saves:
+
+Home:
+Whitefield
+
+Office:
+Cubbon Park
+
+Morning notification:
+
+Today's crowd is higher than usual.
+
+Recommended departure:
+8:40 AM
+🚇 Module 9 - AI Analytics
+
+Examples:
+
+Why is Majestic crowded?
+
+↓
+
+Holiday
+
+↓
+
+Rain
+
+↓
+
+Event
+
+↓
+
+Office Peak
+
+This is an explainability feature.
+
+🚇 Module 10 - Emergency Mode
+
+If one station becomes overcrowded:
+
+⚠ Majestic Overloaded
+
+Suggested Entry:
+
+Sir M. Visvesvaraya Station
+
+
+
+
+Why Random Forest?
+
+For your dataset, Random Forest is an excellent first choice because it:
+
+Works well with nonlinear relationships.
+Handles categorical and numerical features effectively after encoding.
+Is easy to interpret and deploy.
+Trains quickly on large datasets compared to many deep learning models.
+
+Later, if you want to compare models, you can also try XGBoost, LightGBM, or LSTM.
+
+Why are we using Random Forest?
+
+For your Smart Metro project, Random Forest is a good choice because it:
+
+Handles numerical and encoded categorical features well.
+Learns non-linear relationships (for example, rush hours and holidays).
+Is robust to noise in synthetic datasets.
+Gives strong baseline performance without extensive tuning.
+
+pandas
+
+We'll create a DataFrame from the user's input before giving it to the model.
+
+The model expects data in the same format as it was trained on.
+
+Create a Flask API (app.py) that exposes an endpoint such as:
+
+POST /predict
+
+The frontend will send:
+
+{
+  "date": "2026-07-20",
+  "time": "08:30",
+  "station_id": "P015",
+  "weather": "Sunny",
+  "holiday": "No",
+  "special_event": "No Event"
+}
+
+The backend will:
+
+Read the request.
+Look up the station name and metro line from station_master.csv.
+Encode the categorical values.
+Run the model.
+Return the prediction as JSON.
+
+Example response:
+
+{
+  "predicted_passengers": 7130
+}
+Phase 3
+
+Build the React frontend that calls the Flask API and displays the prediction.
+
+Phase 4: Backend Development (Flask)
+
+
+
+
+The frontend will send data like this:
+
+{
+  "date": "2026-07-23",
+  "time": "09:30",
+  "station_id": "P015",
+  "weather": "Cloudy",
+  "holiday": "Yes",
+  "special_event": "No Event"
+}
+
+The backend will:
+
+Receive JSON
+      │
+      ▼
+Validate Inputs
+      │
+      ▼
+Read station_master.csv
+      │
+      ▼
+Find Station Name
+Find Metro Line
+      │
+      ▼
+Convert Date
+(year, month, day, day_of_week)
+      │
+      ▼
+Encode Categorical Values
+      │
+      ▼
+Predict using model.pkl
+      │
+      ▼
+Return JSON Response
+
+
+
+
+
+What each file does
+app.py
+
+The Flask backend.
+
+Starts the web server.
+Loads the model.
+Receives requests from React.
+Returns predictions.
+train_model.py
+
+Used only once whenever you retrain your AI model.
+
+Dataset
+   ↓
+Training
+   ↓
+model.pkl
+predict.py
+
+Used to test the AI model from the terminal.
+
+You enter data
+      ↓
+Model predicts
+      ↓
+Shows passengers
+generate_passenger_flow.py
+
+Generated your synthetic passenger dataset.
+
+You won't run this every day—only if you decide to regenerate the dataset.
+
+data/
+
+Contains all CSV files used by the project.
+
+models/
+
+Contains the trained AI model and encoders.
+
+
+
+
+
+
+
+
+
+
+

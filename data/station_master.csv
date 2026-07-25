@@ -1,0 +1,90 @@
+station_id,station_name,metro_line,station_type,is_interchange,is_terminal,station_category,behavior_profile,zone,latitude,longitude,opening_year,parking,platform_count,importance_level,base_capacity,status,base_arrivals_15min,peak_multiplier,weekend_multiplier
+P001,Challaghatta,Purple,Terminal,No,Yes,Residential,RESIDENTIAL,West,12.89742972864523,77.46110862473188,2023,Yes,2,3,4000,Operational,630,1.7,0.9
+P002,Kengeri,Purple,Normal,No,No,Residential,RESIDENTIAL,West,12.908000528414776,77.47635533814359,2023,Yes,2,3,4000,Operational,630,1.7,0.9
+P003,Kengeri Bus Terminal,Purple,Normal,No,No,Transport Hub,TRANSPORT_HUB,West,12.914693378691132,77.48764207374924,2023,Yes,2,4,6000,Operational,1680,2.2,1.15
+P004,Pattanagere,Purple,Normal,No,No,Residential,RESIDENTIAL,West,12.924230380486732,77.49824216370163,2023,No,2,2,2500,Operational,570,1.7,0.9
+P005,Jnanabharathi,Purple,Normal,No,No,Educational,EDUCATIONAL,West,12.935314595948553,77.51094510557249,2023,Yes,2,4,6000,Operational,780,1.6,0.6
+P006,Rajarajeshwari Nagar,Purple,Normal,No,No,Residential,RESIDENTIAL,West,12.936694859971253,77.51918485144977,2023,Yes,2,3,4000,Operational,630,1.7,0.9
+P007,Nayandahalli,Purple,Normal,No,No,Transport Hub,TRANSPORT_HUB,West,12.941797588038318,77.52347638617010,2023,Yes,2,3,4000,Operational,1560,2.2,1.15
+P008,Mysuru Road,Purple,Normal,No,No,Commercial,COMMERCIAL,West,12.946858387418128,77.52982785723236,2015,Yes,2,4,6000,Operational,930,1.8,1.3
+P009,Deepanjali Nagar,Purple,Normal,No,No,Residential,RESIDENTIAL,West,12.952086377809340,77.53682305815943,2015,No,2,2,2500,Operational,570,1.7,0.9
+P010,Attiguppe,Purple,Normal,No,No,Residential,RESIDENTIAL,West,12.961914702936180,77.53394773016198,2015,No,2,2,2500,Operational,570,1.7,0.9
+P011,Vijayanagara,Purple,Normal,No,No,Commercial,COMMERCIAL,Central,12.970906235005108,77.53720929635566,2015,Yes,2,4,6000,Operational,930,1.8,1.3
+P012,Hosahalli,Purple,Normal,No,No,Residential,RESIDENTIAL,Central,12.974126379091840,77.54519155057670,2015,No,2,2,2500,Operational,570,1.7,0.9
+P013,Magadi Road,Purple,Normal,No,No,Commercial,COMMERCIAL,Central,12.975506428040612,77.55544831758021,2015,No,2,3,4000,Operational,860,1.8,1.3
+P014,City Railway Station,Purple,Normal,No,No,Transport Hub,TRANSPORT_HUB,Central,12.976008262131824,77.56583383120827,2016,Yes,2,5,9000,Operational,1800,2.2,1.15
+P015,Nadaprabhu Kempegowda Station (Majestic),Purple,Interchange,Yes,No,Transport Hub,TRANSPORT_HUB,Central,12.975590067133442,77.57312943953711,2016,Yes,4,5,9000,Operational,1800,2.2,1.15
+P016,Central College,Purple,Normal,No,No,Educational,EDUCATIONAL,Central,12.974168198886217,77.58428742914840,2017,No,2,3,4000,Operational,710,1.6,0.6
+P017,Vidhana Soudha,Purple,Normal,No,No,Government,GOVERNMENT,Central,12.979864961313217,77.59272336959114,2017,No,2,5,9000,Operational,1000,1.6,0.4
+P018,Cubbon Park,Purple,Normal,No,No,Tourist,TOURIST,Central,12.980973157500646,77.59731531148601,2017,No,2,3,4000,Operational,700,1.4,1.5
+P019,MG Road,Purple,Normal,No,No,Commercial,COMMERCIAL,Central,12.975662134700336,77.60675668731423,2011,Yes,2,5,9000,Operational,1000,1.8,1.3
+P020,Trinity,Purple,Normal,No,No,Commercial,COMMERCIAL,Central,12.972943850856076,77.61671304691595,2011,No,2,4,6000,Operational,930,1.8,1.3
+P021,Halasuru,Purple,Normal,No,No,Residential,RESIDENTIAL,Central,12.976461748613309,77.62599421470517,2011,No,2,3,4000,Operational,630,1.7,0.9
+P022,Indiranagar,Purple,Normal,No,No,Commercial,COMMERCIAL,East,12.978176337673710,77.63833237615901,2011,Yes,2,5,9000,Operational,1000,1.8,1.3
+P023,Swami Vivekananda Road,Purple,Normal,No,No,Residential,RESIDENTIAL,East,12.986017295357373,77.64481259306632,2011,No,2,3,4000,Operational,630,1.7,0.9
+P024,Baiyappanahalli,Purple,Normal,No,No,Transport Hub,TRANSPORT_HUB,East,12.990554483212534,77.65285922011995,2011,Yes,2,5,9000,Operational,1800,2.2,1.15
+P025,Benniganahalli,Purple,Normal,No,No,Commercial,COMMERCIAL,East,12.996387888661094,77.66817999804127,2023,No,2,3,4000,Operational,860,1.8,1.3
+P026,K.R. Pura,Purple,Normal,No,No,Commercial,COMMERCIAL,East,13.000109487878468,77.67762137374501,2023,Yes,2,4,6000,Operational,930,1.8,1.3
+P027,Singayyanapalya,Purple,Normal,No,No,Industrial,INDUSTRIAL,East,12.996617876714645,77.69236279449930,2023,No,2,3,4000,Operational,730,1.9,0.8
+P028,Garudacharpalya,Purple,Normal,No,No,Industrial,INDUSTRIAL,East,12.993565290183320,77.70354224168020,2023,No,2,3,4000,Operational,730,1.9,0.8
+P029,Hoodi,Purple,Normal,No,No,Industrial,INDUSTRIAL,East,12.988860888190697,77.71124554593380,2023,Yes,2,3,4000,Operational,730,1.9,0.8
+P030,Seetharampalya,Purple,Normal,No,No,IT Hub,IT_COMMUTER,East,12.981166385300815,77.70869208296683,2023,No,2,2,2500,Operational,860,2.3,0.75
+P031,Kundalahalli,Purple,Normal,No,No,IT Hub,IT_COMMUTER,East,12.977653598299270,77.71557999573454,2023,Yes,2,4,6000,Operational,1020,2.3,0.75
+P032,Nallurhalli,Purple,Normal,No,No,Residential,RESIDENTIAL,East,12.976589596333106,77.72466078005057,2023,No,2,2,2500,Operational,570,1.7,0.9
+P033,Sri Sathya Sai Hospital,Purple,Normal,No,No,Hospital,HOSPITAL,East,12.981163954989556,77.72734344000298,2023,Yes,2,5,9000,Operational,900,1.3,1
+P034,Pattandur Agrahara,Purple,Normal,No,No,IT Hub,IT_COMMUTER,East,12.987593481259813,77.73773968216156,2023,Yes,2,4,6000,Operational,1020,2.3,0.75
+P035,Kadugodi Tree Park,Purple,Normal,No,No,Residential,RESIDENTIAL,East,12.985648959142140,77.74649441242647,2023,Yes,2,3,4000,Operational,630,1.7,0.9
+P036,Hopefarm Channasandra,Purple,Normal,No,No,Residential,RESIDENTIAL,East,12.987287989039856,77.75362905487141,2023,Yes,2,3,4000,Operational,630,1.7,0.9
+P037,Whitefield (Kadugodi),Purple,Terminal,No,Yes,IT Hub,IT_COMMUTER,East,12.995699152518254,77.75773036744444,2023,Yes,2,5,9000,Operational,1100,2.3,0.75
+
+
+G001,Madavara,Green,Terminal,No,Yes,Residential,RESIDENTIAL,North,13.057305736540789,77.47284456336152,2024,Yes,2,3,4000,Operational,630,1.7,0.9
+G002,Chikkabidarakallu,Green,Normal,No,No,Residential,RESIDENTIAL,North,13.052348929726870,77.48782081719257,2024,No,2,2,2500,Operational,570,1.7,0.9
+G003,Manjunathanagara,Green,Normal,No,No,Residential,RESIDENTIAL,North,13.050309930658864,77.49435262940555,2024,No,2,2,2500,Operational,570,1.7,0.9
+G004,Nagasandra,Green,Normal,No,No,Residential,RESIDENTIAL,North,13.048235759250636,77.50016269407276,2015,Yes,2,3,4000,Operational,630,1.7,0.9
+G005,Dasarahalli,Green,Normal,No,No,Residential,RESIDENTIAL,North,13.043630333265105,77.51232413414971,2015,No,2,2,2500,Operational,570,1.7,0.9
+G006,Jalahalli,Green,Normal,No,No,Residential,RESIDENTIAL,North,13.039833429137490,77.51993856672597,2015,Yes,2,3,4000,Operational,630,1.7,0.9
+G007,Peenya Industry,Green,Normal,No,No,Industrial,INDUSTRIAL,North,13.036458354217274,77.52527949619382,2015,No,2,3,4000,Operational,730,1.9,0.8
+G008,Peenya,Green,Normal,No,No,Industrial,INDUSTRIAL,North,13.033118391115892,77.53332697706826,2015,Yes,2,3,4000,Operational,730,1.9,0.8
+G009,Goraguntepalya,Green,Normal,No,No,Industrial,INDUSTRIAL,North,13.028301733390634,77.54083314756997,2015,No,2,3,4000,Operational,730,1.9,0.8
+G010,Yeshwanthpur,Green,Normal,No,No,Transport Hub,TRANSPORT_HUB,North,13.023274026904948,77.54978281301821,2015,Yes,2,5,9000,Operational,1800,2.2,1.15
+G011,Sandal Soap Factory,Green,Normal,No,No,Commercial,COMMERCIAL,North,13.014730208261136,77.55393285920906,2015,No,2,3,4000,Operational,860,1.8,1.3
+G012,Mahalakshmi,Green,Normal,No,No,Residential,RESIDENTIAL,North,13.008260618793180,77.54902497849640,2015,No,2,2,2500,Operational,570,1.7,0.9
+G013,Rajajinagar,Green,Normal,No,No,Commercial,COMMERCIAL,Central,13.000384368675546,77.54978281307997,2015,Yes,2,4,6000,Operational,930,1.8,1.3
+G014,Kuvempu Road,Green,Normal,No,No,Residential,RESIDENTIAL,Central,12.998415267174670,77.55678376056714,2015,No,2,2,2500,Operational,570,1.7,0.9
+G015,Srirampura,Green,Normal,No,No,Residential,RESIDENTIAL,Central,12.996621964716017,77.56342383447252,2015,No,2,2,2500,Operational,570,1.7,0.9
+G016,Sampige Road,Green,Normal,No,No,Commercial,COMMERCIAL,Central,12.990327721922888,77.57064130660565,2024,No,2,3,4000,Operational,860,1.8,1.3
+G017,Nadaprabhu Kempegowda Station (Majestic),Green,Interchange,Yes,No,Transport Hub,TRANSPORT_HUB,Central,12.975663979752854,77.57266219866380,2016,Yes,4,5,9000,Operational,1800,2.2,1.15
+G018,Chickpet,Green,Normal,No,No,Commercial,COMMERCIAL,Central,12.967491932409360,77.57462956640020,2017,No,2,4,6000,Operational,930,1.8,1.3
+G019,Krishna Rajendra Market,Green,Normal,No,No,Commercial,COMMERCIAL,Central,12.959932294022249,77.57447646070610,2017,No,2,4,6000,Operational,930,1.8,1.3
+G020,National College,Green,Normal,No,No,Educational,EDUCATIONAL,South,12.950631634525797,77.57360886177281,2017,No,2,3,4000,Operational,710,1.6,0.6
+G021,Lalbagh,Green,Normal,No,No,Tourist,TOURIST,South,12.946254732955982,77.57978412485568,2017,No,2,3,4000,Operational,700,1.4,1.5
+G022,South End Circle,Green,Normal,No,No,Commercial,COMMERCIAL,South,12.938445752632331,77.57998826578115,2017,No,2,3,4000,Operational,860,1.8,1.3
+G023,Jayanagar,Green,Normal,No,No,Commercial,COMMERCIAL,South,12.929840669497285,77.57988619531841,2017,Yes,2,4,6000,Operational,930,1.8,1.3
+G024,Rashtreeya Vidyalaya Road,Green,Interchange,Yes,No,Commercial,COMMERCIAL,South,12.921682975119769,77.58034551212715,2017,Yes,2,4,6000,Operational,930,1.8,1.3
+G025,Banashankari,Green,Normal,No,No,Residential,RESIDENTIAL,South,12.915614273931768,77.57350679112355,2017,Yes,2,4,6000,Operational,690,1.7,0.9
+G026,Jaya Prakash Nagar,Green,Normal,No,No,Residential,RESIDENTIAL,South,12.907754589398724,77.57294540357847,2017,No,2,3,4000,Operational,630,1.7,0.9
+G027,Yelachenahalli,Green,Normal,No,No,Residential,RESIDENTIAL,South,12.896263086955518,77.56998536015898,2017,Yes,2,3,4000,Operational,630,1.7,0.9
+G028,Konanakunte Cross,Green,Normal,No,No,Residential,RESIDENTIAL,South,12.888800789241400,77.56253421589349,2021,Yes,2,3,4000,Operational,630,1.7,0.9
+G029,Doddakallasandra,Green,Normal,No,No,Residential,RESIDENTIAL,South,12.884671555869152,77.55283752193314,2021,Yes,2,3,4000,Operational,630,1.7,0.9
+G030,Vajarahalli,Green,Normal,No,No,Residential,RESIDENTIAL,South,12.877208913252554,77.54462084968253,2021,No,2,2,2500,Operational,570,1.7,0.9
+G031,Thalaghattapura,Green,Normal,No,No,Residential,RESIDENTIAL,South,12.871288391727680,77.53829248045223,2021,Yes,2,3,4000,Operational,630,1.7,0.9
+G032,Silk Institute,Green,Terminal,No,Yes,Educational,EDUCATIONAL,South,12.861884923651420,77.52992270250750,2021,Yes,2,4,6000,Operational,780,1.6,0.6
+
+
+Y001,RV Road,Yellow,Interchange,Yes,No,Commercial,COMMERCIAL,South,12.922079655733485,77.58049742572266,2025,Yes,2,5,9000,Operational,1000,1.8,1.3
+Y002,Ragigudda,Yellow,Normal,No,No,Residential,RESIDENTIAL,South,12.913934802677734,77.58984940253494,2025,No,2,3,4000,Operational,630,1.7,0.9
+Y003,Jayadeva Hospital,Yellow,Interchange,Yes,No,Hospital,HOSPITAL,South,12.916313831811635,77.59972862940677,2025,Yes,2,5,9000,Operational,900,1.3,1
+Y004,BTM Layout,Yellow,Normal,No,No,Commercial,COMMERCIAL,South,12.916640057017430,77.61093001977224,2025,Yes,2,4,6000,Operational,930,1.8,1.3
+Y005,Silk Board,Yellow,Interchange,Yes,No,Transport Hub,TRANSPORT_HUB,South,12.917209646026925,77.62277791670581,2025,Yes,4,5,9000,Operational,1800,2.2,1.15
+Y006,Hongasandra,Yellow,Normal,No,No,Residential,RESIDENTIAL,South,12.916658462617165,77.63480795919615,2025,No,2,3,4000,Operational,630,1.7,0.9
+Y007,Bommanahalli,Yellow,Normal,No,No,Commercial,COMMERCIAL,South,12.908780586856840,77.64572132669282,2025,Yes,2,4,6000,Operational,930,1.8,1.3
+Y008,Kudlu Gate,Yellow,Normal,No,No,Commercial,COMMERCIAL,South,12.900484839698845,77.65785773362442,2025,No,2,3,4000,Operational,860,1.8,1.3
+Y009,Singasandra,Yellow,Normal,No,No,Residential,RESIDENTIAL,South,12.893682401277995,77.66485373754353,2025,No,2,2,2500,Operational,570,1.7,0.9
+Y010,Hosa Road,Yellow,Normal,No,No,Residential,RESIDENTIAL,South,12.886740386936334,77.67503094371475,2025,Yes,2,3,4000,Operational,630,1.7,0.9
+Y011,Basapura Road,Yellow,Normal,No,No,Residential,RESIDENTIAL,South,12.878930298025104,77.68475589373815,2025,No,2,2,2500,Operational,570,1.7,0.9
+Y012,Electronic City,Yellow,Normal,No,No,IT Hub,IT_COMMUTER,South,12.848984779087368,77.67881851162241,2025,Yes,2,5,9000,Operational,1100,2.3,0.75
+Y013,Huskur Road,Yellow,Normal,No,No,Industrial,INDUSTRIAL,South,12.839490810970036,77.68532107980273,2025,No,2,3,4000,Operational,730,1.9,0.8
+Y014,Hebbagodi,Yellow,Normal,No,No,Industrial,INDUSTRIAL,South,12.829643549854663,77.69155754718178,2025,No,2,3,4000,Operational,730,1.9,0.8
+Y015,Bommasandra Industrial Area,Yellow,Normal,No,No,Industrial,INDUSTRIAL,South,12.819577275842530,77.69645887857253,2025,Yes,2,4,6000,Operational,790,1.9,0.8
+Y016,Bommasandra,Yellow,Terminal,No,Yes,Industrial,INDUSTRIAL,South,12.811284755532070,77.69983167240441,2025,Yes,2,4,6000,Operational,790,1.9,0.8

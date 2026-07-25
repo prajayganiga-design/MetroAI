@@ -1,0 +1,392 @@
+/* ===========================
+   Google Font
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#0F172A;
+    color:white;
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+
+/* ===========================
+   Splash Screen
+=========================== */
+
+#splash-screen{
+
+    position:fixed;
+    inset:0;
+
+    background:#0F172A;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    z-index:9999;
+
+}
+
+.logo{
+
+    width:120px;
+    height:120px;
+
+    border-radius:50%;
+
+    background:#7C3AED;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    margin-bottom:20px;
+
+    animation:pulse 2s infinite;
+
+}
+
+.logo i{
+
+    font-size:55px;
+
+}
+
+#splash-screen h1{
+
+    font-size:50px;
+
+    margin-bottom:8px;
+
+}
+
+#splash-screen h3{
+
+    color:#cbd5e1;
+
+    font-weight:400;
+
+    margin-bottom:35px;
+
+}
+
+.loading-text{
+
+    width:420px;
+
+}
+
+.loading-text p{
+
+    margin:10px 0;
+
+    color:#94A3B8;
+
+}
+
+.progress{
+
+    width:420px;
+
+    height:12px;
+
+    background:#1E293B;
+
+    border-radius:30px;
+
+    margin-top:30px;
+
+    overflow:hidden;
+
+}
+
+.progress-bar{
+
+    width:0%;
+
+    height:100%;
+
+    background:#7C3AED;
+
+    animation:loading 3.5s forwards;
+
+}
+
+#splash-screen h2{
+
+    margin-top:35px;
+
+    color:#22C55E;
+
+}
+
+/* ===========================
+Dashboard
+=========================== */
+
+#dashboard{
+
+    display:flex;
+
+    height:100vh;
+
+    display:none;
+
+}
+
+/* ===========================
+Sidebar
+=========================== */
+
+.sidebar{
+
+    width:260px;
+
+    background:#111827;
+
+    padding:25px;
+
+}
+
+.brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    font-size:28px;
+
+    font-weight:600;
+
+    margin-bottom:45px;
+
+}
+
+.brand i{
+
+    color:#7C3AED;
+
+}
+
+.sidebar ul{
+
+    list-style:none;
+
+}
+
+.sidebar li{
+
+    padding:15px;
+
+    margin-bottom:12px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.sidebar li:hover{
+
+    background:#7C3AED;
+
+}
+
+.sidebar li.active{
+
+    background:#7C3AED;
+
+}
+
+.sidebar li i{
+
+    width:30px;
+
+}
+
+/* ===========================
+Main Area
+=========================== */
+
+main{
+
+    flex:1;
+
+    padding:35px;
+
+    overflow:auto;
+
+}
+
+header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+header p{
+
+    color:#94A3B8;
+
+}
+
+.status{
+
+    background:#1E293B;
+
+    padding:12px 20px;
+
+    border-radius:12px;
+
+}
+
+.online{
+
+    width:10px;
+
+    height:10px;
+
+    background:#22C55E;
+
+    border-radius:50%;
+
+    display:inline-block;
+
+    margin-right:8px;
+
+}
+
+/* ===========================
+Cards
+=========================== */
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:20px;
+
+}
+
+.card{
+
+    background:#1E293B;
+
+    padding:25px;
+
+    border-radius:18px;
+
+    transition:.3s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 15px 30px rgba(0,0,0,.3);
+
+}
+
+.card h3{
+
+    color:#94A3B8;
+
+    margin-bottom:15px;
+
+}
+
+.card h1{
+
+    font-size:40px;
+
+}
+
+/* ===========================
+Prediction Panel
+=========================== */
+
+.prediction-panel{
+
+    margin-top:40px;
+
+    background:#1E293B;
+
+    padding:30px;
+
+    border-radius:20px;
+
+}
+
+.prediction-panel h2{
+
+    margin-bottom:15px;
+
+}
+
+.prediction-panel p{
+
+    color:#94A3B8;
+
+}
+
+/* ===========================
+Animations
+=========================== */
+
+@keyframes loading{
+
+    from{
+
+        width:0%;
+
+    }
+
+    to{
+
+        width:100%;
+
+    }
+
+}
+
+@keyframes pulse{
+
+    0%{
+
+        transform:scale(1);
+
+    }
+
+    50%{
+
+        transform:scale(1.08);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
+}

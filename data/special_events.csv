@@ -1,0 +1,23 @@
+event_id,date,day_of_week,event_name,event_type,nearby_station,metro_line,event_impact,event_duration_days,expected_extra_passengers
+E0001,2024-01-26,Friday,Republic Day Celebration,Government,Cubbon Park,Purple,1.3,1,5000
+E0002,2024-02-13,Tuesday,Aero India,Air Show,Baiyappanahalli,Purple,1.5,5,15000
+E0003,2024-03-22,Friday,IPL Match,Sports,Cubbon Park,Purple,1.4,1,12000
+E0004,2024-04-20,Saturday,Bengaluru Food Festival,Festival,MG Road,Purple,1.2,2,6000
+E0005,2024-05-10,Friday,Music Concert,Entertainment,Indiranagar,Purple,1.25,1,7000
+E0006,2024-07-20,Saturday,Lalbagh Flower Show,Exhibition,Lalbagh,Green,1.3,10,9000
+E0007,2024-08-15,Thursday,Independence Day Celebration,Government,Cubbon Park,Purple,1.3,1,5000
+E0008,2024-09-18,Wednesday,Book Fair,Exhibition,Majestic,Purple,1.25,7,8000
+E0009,2024-10-05,Saturday,Dasara Cultural Festival,Festival,MG Road,Purple,1.2,5,6500
+E0010,2024-11-19,Tuesday,Bengaluru Tech Summit,Technology,Whitefield (Kadugodi),Purple,1.35,3,10000
+E0011,2024-12-28,Saturday,New Year Shopping Festival,Shopping,MG Road,Purple,1.25,4,8500
+E0012,2025-01-26,Sunday,Republic Day Celebration,Government,Cubbon Park,Purple,1.3,1,5000
+E0013,2025-02-10,Monday,Aero India,Air Show,Baiyappanahalli,Purple,1.5,5,16000
+E0014,2025-03-18,Tuesday,IPL Match,Sports,Cubbon Park,Purple,1.4,1,12000
+E0015,2025-04-12,Saturday,Startup Expo,Technology,Whitefield (Kadugodi),Purple,1.3,2,9000
+E0016,2025-05-25,Sunday,Music Concert,Entertainment,MG Road,Purple,1.25,1,7000
+E0017,2025-07-18,Friday,Lalbagh Flower Show,Exhibition,Lalbagh,Green,1.3,10,9000
+E0018,2025-08-15,Friday,Independence Day Celebration,Government,Cubbon Park,Purple,1.3,1,5000
+E0019,2025-09-15,Monday,BIEC Trade Expo,Exhibition,Nagasandra,Green,1.35,4,9500
+E0020,2025-10-22,Wednesday,Deepavali Shopping Festival,Shopping,MG Road,Purple,1.25,5,10000
+E0021,2025-11-18,Tuesday,Bengaluru Tech Summit,Technology,Whitefield (Kadugodi),Purple,1.35,3,10000
+E0022,2025-12-27,Saturday,Year End Carnival,Festival,Trinity,Purple,1.2,2,6000
