@@ -1,0 +1,590 @@
+/* =========================================================
+   MetroAI - Stations Page
+========================================================= */
+
+
+/* =========================================================
+   PAGE LAYOUT
+========================================================= */
+
+.stations-page {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.stations-main {
+    flex: 1;
+    margin-left: 311px;
+    padding: 40px;
+    min-width: 0;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.stations-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.stations-header h1 {
+    margin: 0 0 8px 0;
+    font-size: 32px;
+    font-weight: 800;
+}
+
+.stations-header p {
+    margin: 0;
+    font-size: 15px;
+    color: #8f9bad;
+}
+
+
+/* =========================================================
+   SEARCH + FILTER
+========================================================= */
+
+.station-controls {
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    gap: 18px;
+    margin-bottom: 30px;
+}
+
+
+/* Search Box */
+
+.station-search,
+.station-filter {
+    height: 58px;
+    display: flex;
+    align-items: center;
+
+    background: #151d2b;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+
+    transition: 0.25s ease;
+}
+
+.station-search {
+    padding: 0 20px;
+}
+
+.station-search i,
+.station-filter i {
+    color: #7d899b;
+    font-size: 16px;
+}
+
+.station-search input {
+    flex: 1;
+
+    height: 100%;
+    margin-left: 12px;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 15px;
+}
+
+.station-search input::placeholder {
+    color: #6f7b8d;
+}
+
+
+/* Filter */
+
+.station-filter {
+    padding: 0 16px;
+}
+
+.station-filter i {
+    margin-right: 10px;
+}
+
+.station-filter select {
+    flex: 1;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+.station-filter select option {
+    background: #151d2b;
+    color: #ffffff;
+}
+
+
+/* Focus */
+
+.station-search:focus-within,
+.station-filter:focus-within {
+    border-color: rgba(0, 200, 255, 0.45);
+    box-shadow: 0 0 0 3px rgba(0, 200, 255, 0.08);
+}
+
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+.station-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 35px;
+}
+
+.stat-card {
+    min-height: 110px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 20px;
+
+    background: #151d2b;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 16px;
+
+    transition: transform 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(0, 200, 255, 0.25);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+
+/* Stat Icon */
+
+.stat-icon {
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 15px;
+
+    border-radius: 13px;
+
+    background: rgba(0, 200, 255, 0.10);
+    color: #00c8ff;
+
+    font-size: 20px;
+}
+
+
+/* Stat Text */
+
+.stat-card span {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #8f9bad;
+
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.stat-card h2 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 26px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   RESULTS HEADER
+========================================================= */
+
+.stations-results-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+}
+
+.stations-results-header h2 {
+    margin: 0 0 5px 0;
+
+    color: #ffffff;
+
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.stations-results-header p {
+    margin: 0;
+
+    color: #7f8a9b;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   STATION GRID
+========================================================= */
+
+.station-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+
+/* =========================================================
+   STATION CARD
+========================================================= */
+
+.station-card {
+    position: relative;
+
+    padding: 22px;
+
+    background: #151d2b;
+
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 17px;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.station-card:hover {
+    transform: translateY(-4px);
+
+    border-color: rgba(0, 200, 255, 0.28);
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.28);
+}
+
+
+/* =========================================================
+   CARD TOP
+========================================================= */
+
+.station-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    margin-bottom: 18px;
+}
+
+
+/* Station Icon */
+
+.station-card-icon {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: rgba(0, 200, 255, 0.10);
+    color: #00c8ff;
+
+    font-size: 18px;
+}
+
+
+/* Station ID */
+
+.station-id {
+    padding: 6px 10px;
+
+    border-radius: 8px;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    color: #8995a7;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   STATION NAME
+========================================================= */
+
+.station-card h3 {
+    margin: 0 0 8px 0;
+
+    color: #ffffff;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    line-height: 1.35;
+}
+
+.station-card-description {
+    margin: 0 0 18px 0;
+
+    color: #7f8b9d;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   LINE / STATUS BADGES
+========================================================= */
+
+.station-badges {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    margin-bottom: 20px;
+}
+
+.station-badge {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 6px 9px;
+
+    border-radius: 8px;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+
+/* Metro Line */
+
+.badge-line {
+    background: rgba(0, 200, 255, 0.10);
+    color: #00c8ff;
+}
+
+
+/* Operational */
+
+.badge-operational {
+    background: rgba(50, 210, 130, 0.10);
+    color: #45d995;
+}
+
+
+/* Interchange */
+
+.badge-interchange {
+    background: rgba(180, 120, 255, 0.10);
+    color: #bd8cff;
+}
+
+
+/* Terminal */
+
+.badge-terminal {
+    background: rgba(255, 170, 70, 0.10);
+    color: #ffb45c;
+}
+
+
+/* =========================================================
+   STATION INFORMATION
+========================================================= */
+
+.station-info {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 10px;
+
+    padding-top: 17px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.station-info-item {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.station-info-item span {
+    color: #687487;
+
+    font-size: 11px;
+}
+
+.station-info-item strong {
+    color: #dce3ec;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.empty-state {
+    padding: 70px 20px;
+
+    text-align: center;
+
+    background: #151d2b;
+
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 18px;
+}
+
+.empty-icon {
+    width: 65px;
+    height: 65px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 18px;
+
+    border-radius: 50%;
+
+    background: rgba(0, 200, 255, 0.08);
+
+    color: #00c8ff;
+
+    font-size: 25px;
+}
+
+.empty-state h2 {
+    margin: 0 0 8px;
+
+    color: #ffffff;
+
+    font-size: 20px;
+}
+
+.empty-state p {
+    margin: 0;
+
+    color: #7f8a9b;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   RESPONSIVE - LARGE TABLETS
+========================================================= */
+
+@media (max-width: 1200px) {
+
+    .station-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .station-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+========================================================= */
+
+@media (max-width: 992px) {
+
+    .stations-main {
+        margin-left: 0;
+        padding: 25px;
+    }
+
+    .station-controls {
+        grid-template-columns: 1fr;
+    }
+
+    .station-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .stations-main {
+        padding: 20px 15px;
+    }
+
+    .stations-header h1 {
+        font-size: 26px;
+    }
+
+    .stations-header p {
+        font-size: 13px;
+    }
+
+    .station-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .station-search,
+    .station-filter {
+        height: 54px;
+    }
+
+    .station-card {
+        padding: 18px;
+    }
+
+}

@@ -1,0 +1,182 @@
+/* ================================
+   SIDEBAR
+================================ */
+
+.sidebar{
+
+    position:fixed;
+
+    top:18px;
+
+    left:18px;
+
+    bottom:18px;
+
+    width:275px;
+
+    background:rgba(18,27,45,.92);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:24px;
+
+    padding:25px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
+
+}
+
+/* ================================
+   LOGO
+================================ */
+
+.logo{
+
+    display:flex;
+    align-items:center;
+    gap:16px;
+
+    margin-bottom:40px;
+
+    padding-bottom:20px;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+.logo img{
+
+    width:60px;
+    height:60px;
+
+    border-radius:18px;
+
+    padding:8px;
+
+    background:linear-gradient(135deg,#00C8FF,#7C3AED);
+
+    box-shadow:0 12px 25px rgba(124,58,237,.30);
+
+}
+
+.logo h2{
+
+    color:white;
+
+    font-size:24px;
+
+    font-weight:700;
+
+    margin-bottom:2px;
+
+}
+
+.logo p{
+
+    color:#94A3B8;
+
+    font-size:13px;
+
+    font-weight:400;
+
+}
+
+.logo-text{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+/* ================================
+   MENU
+================================ */
+
+.sidebar ul{
+
+    list-style: none;
+
+}
+
+.sidebar ul li{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    padding:16px 18px;
+
+    margin-bottom:10px;
+
+    border-radius:15px;
+
+    color:#AEB8C8;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+    font-weight:500;
+
+}
+
+.sidebar ul li i{
+
+    width: 22px;
+
+    font-size: 18px;
+
+}
+
+/* Hover */
+
+.sidebar ul li:hover{
+
+    background:rgba(0,200,255,.12);
+
+    color:white;
+
+    transform:translateX(8px);
+
+}
+
+/* Active */
+
+.sidebar ul li.active{
+
+    background:linear-gradient(90deg,#00C8FF,#7C3AED);
+
+    color:white;
+
+    box-shadow:0 10px 30px rgba(0,200,255,.25);
+
+}
+
+/* ================================
+   VERSION
+================================ */
+
+.version{
+
+    margin-top:auto;
+
+    text-align:center;
+
+    color:#64748B;
+
+    font-size:13px;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    padding-top:20px;
+
+}

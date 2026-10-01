@@ -321,11 +321,81 @@ Contains the trained AI model and encoders.
 
 
 
+"How did you calculate confidence?"
+
+You can answer:
+
+"Our project uses a Random Forest Regressor, which consists of multiple decision trees. Each tree predicts the passenger arrivals independently. We calculate the standard deviation of all tree predictions. If the trees produce similar values, the prediction is considered highly reliable; if they vary significantly, the confidence decreases. This estimated confidence is then displayed as a percentage.
 
 
 
 
+If your guide asks:
+
+"What if the user enters the wrong data?"
+
+You can answer:
+
+"To prevent invalid inputs, the application does not allow users to type arbitrary values for categorical features such as Weather, Holiday, and Special Event. Instead, these are provided as predefined dropdown lists. The dropdown values exactly match the categories used while training the machine learning model. This ensures that only valid inputs are passed to the model, improving prediction accuracy and preventing errors."
+
+Another advantage you can mention
+
+If your examiner asks:
+
+"Why didn't you use a text box?"
+
+You can explain:
+
+"Machine learning models perform best when prediction inputs match the format of the training data. Using dropdown menus ensures consistency between the training dataset and the prediction inputs, reducing invalid data and improving reliability."
+
+That is a very good software engineering justification.
 
 
+When your guide asks:
 
+"How does the user know which special events are happening?"
+
+You can answer:
+
+"The system reads the special_events.csv dataset and filters events based on the selected travel date. Only events relevant to that date are shown to the user. This reduces incorrect input and improves prediction accuracy."
+
+🏗️ Architecture
+
+The flow will be:
+
+User types
+
+das
+
+        │
+        ▼
+
+planner.js
+
+        │
+        ▼
+
+GET /api/events?q=das
+
+        │
+        ▼
+
+Flask
+
+        │
+        ▼
+
+special_events.csv
+
+        │
+        ▼
+
+Returns matching events
+
+        │
+        ▼
+
+Suggestions appear
+
+Exactly the same pattern as your Station Search.
 

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MetroAI | Stations</title>
+
+    <!-- Google Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <!-- Main CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <!-- Sidebar CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/sidebar.css') }}"
+    >
+
+    <!-- Stations CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/stations.css') }}"
+    >
+</head>
+
+
+<body>
+
+<div class="stations-page">
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <!-- Logo -->
+        <div class="logo">
+
+            <img
+                src="{{ url_for('static', filename='assets/logo.png') }}"
+                alt="MetroAI"
+            >
+
+            <div class="logo-text">
+                <h2>MetroAI</h2>
+                <p>Operations Center</p>
+            </div>
+
+        </div>
+
+
+        <!-- Navigation -->
+        <ul>
+
+            <li onclick="window.location.href='/dashboard'">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+            </li>
+
+
+            <li onclick="window.location.href='/planner'">
+                <i class="fa-solid fa-brain"></i>
+                AI Journey Planner
+            </li>
+
+
+            <li class="active">
+                <i class="fa-solid fa-train-subway"></i>
+                Stations
+            </li>
+
+
+            <li onclick="window.location.href='/network'">
+                <i class="fa-solid fa-map-location-dot"></i>
+                Metro Network
+            </li>
+
+
+            <li onclick="window.location.href='/assistant'">
+                <i class="fa-solid fa-robot"></i>
+                Travel Assistant
+            </li>
+
+
+            <li onclick="window.location.href='/analytics'">
+                <i class="fa-solid fa-chart-line"></i>
+                Analytics
+            </li>
+
+
+            <li onclick="window.location.href='/prediction'">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                Prediction History
+            </li>
+
+
+            <li onclick="window.location.href='/about'">
+                <i class="fa-solid fa-circle-info"></i>
+                About
+            </li>
+
+        </ul>
+
+
+        <!-- Version -->
+        <div class="version">
+            Version 1.0
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="stations-main">
+
+
+        <!-- =================================================
+             PAGE HEADER
+        ================================================== -->
+
+        <header class="stations-header">
+
+            <div>
+
+                <h1>
+                    Metro Stations
+                </h1>
+
+                <p>
+                    Explore metro stations, lines, facilities
+                    and operational information.
+                </p>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             SEARCH & FILTER SECTION
+        ================================================== -->
+
+        <section class="station-controls">
+
+            <!-- Search -->
+            <div class="station-search">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    id="stationSearch"
+                    placeholder="Search station..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <!-- Line Filter -->
+            <div class="station-filter">
+
+                <i class="fa-solid fa-filter"></i>
+
+                <select id="lineFilter">
+
+                    <option value="all">
+                        All Lines
+                    </option>
+
+                    <option value="Purple">
+                        Purple Line
+                    </option>
+
+                    <option value="Green">
+                        Green Line
+                    </option>
+
+                    <option value="Yellow">
+                        Yellow Line
+                    </option>
+
+                </select>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             STATION STATISTICS
+        ================================================== -->
+
+        <section class="station-stats">
+
+
+            <!-- Total Stations -->
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-train-subway"></i>
+                </div>
+
+                <div>
+
+                    <span>
+                        Total Stations
+                    </span>
+
+                    <h2 id="totalStations">
+                        --
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <!-- Metro Lines -->
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-route"></i>
+                </div>
+
+                <div>
+
+                    <span>
+                        Metro Lines
+                    </span>
+
+                    <h2 id="totalLines">
+                        --
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <!-- Interchange Stations -->
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-arrows-turn-to-dots"></i>
+                </div>
+
+                <div>
+
+                    <span>
+                        Interchange Stations
+                    </span>
+
+                    <h2 id="interchangeStations">
+                        --
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <!-- Operational Stations -->
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+
+                <div>
+
+                    <span>
+                        Operational
+                    </span>
+
+                    <h2 id="operationalStations">
+                        --
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             RESULTS HEADER
+        ================================================== -->
+
+        <div class="stations-results-header">
+
+            <div>
+
+                <h2>
+                    Station Directory
+                </h2>
+
+                <p id="resultsCount">
+                    Loading stations...
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             STATION CARDS
+        ================================================== -->
+
+        <section
+            id="stationGrid"
+            class="station-grid"
+        >
+
+            <!--
+                Station cards will be generated
+                dynamically by stations.js
+            -->
+
+        </section>
+
+
+        <!-- =================================================
+             EMPTY STATE
+        ================================================== -->
+
+        <section
+            id="emptyState"
+            class="empty-state"
+            style="display: none;"
+        >
+
+            <div class="empty-icon">
+
+                <i class="fa-solid fa-train-subway"></i>
+
+            </div>
+
+            <h2>
+                No Stations Found
+            </h2>
+
+            <p>
+                Try changing your search or line filter.
+            </p>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script
+    src="{{ url_for('static', filename='js/stations.js') }}">
+</script>
+
+
+</body>
+</html>
