@@ -101,19 +101,41 @@ def about():
 # Fetch All Stations
 # ===============================
 
+# ===============================
+# Fetch All Stations
+# ===============================
+
 @app.route("/api/stations", methods=["GET"])
 def get_stations():
 
+    station_columns = [
+        "station_id",
+        "station_name",
+        "metro_line",
+        "station_type",
+        "is_interchange",
+        "is_terminal",
+        "station_category",
+        "behavior_profile",
+        "zone",
+        "latitude",
+        "longitude",
+        "opening_year",
+        "parking",
+        "platform_count",
+        "importance_level",
+        "base_capacity",
+        "status",
+        "base_arrivals_15min",
+        "peak_multiplier",
+        "weekend_multiplier"
+    ]
+
     station_list = stations[
-        [
-            "station_id",
-            "station_name",
-            "metro_line"
-        ]
+        station_columns
     ].to_dict(orient="records")
 
     return jsonify(station_list)
-
 # ===============================
 # AI Journey Prediction
 # ===============================

@@ -1,229 +1,206 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>MetroAI Dashboard</title>
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Font Awesome -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/sidebar.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/dashboard.css') }}"
+    />
+  </head>
 
-</head>
-
-<body>
-
+  <body>
     <!-- ================= Sidebar ================= -->
 
     <aside class="sidebar">
-
-        <div class="logo">
-
-           <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="MetroAI Logo">
-            <div class="logo-text">
-                <h2>MetroAI</h2>
-                <p>Operations Center</p>
-            </div>
-
+      <div class="logo">
+        <img
+          src="{{ url_for('static', filename='assets/logo.png') }}"
+          alt="MetroAI Logo"
+        />
+        <div class="logo-text">
+          <h2>MetroAI</h2>
+          <p>Operations Center</p>
         </div>
+      </div>
 
-        <ul>
-
-            <li class="active">
-                <i class="fa-solid fa-house"></i>
-                Dashboard
-            </li>
-
-        <li onclick="window.location.href='/planner'">
-            <i class="fas fa-brain"></i>
-            <span>AI Prediction</span>
+      <ul>
+        <!-- Dashboard -->
+        <li class="active" onclick="window.location.href = '/dashboard'">
+          <i class="fa-solid fa-house"></i>
+          Dashboard
         </li>
 
-            <li>
-                <i class="fa-solid fa-train-subway"></i>
-                Stations
-            </li>
+        <!-- AI Journey Planner -->
+        <li onclick="window.location.href = '/planner'">
+          <i class="fa-solid fa-brain"></i>
+          AI Journey Planner
+        </li>
 
-            <li>
-                <i class="fa-solid fa-map-location-dot"></i>
-                Metro Network
-            </li>
+        <!-- Stations -->
+        <li onclick="window.location.href = '/stations'">
+          <i class="fa-solid fa-train-subway"></i>
+          Stations
+        </li>
 
-            <li>
-                <i class="fa-solid fa-robot"></i>
-                Travel Assistant
-            </li>
+        <!-- Metro Network -->
+        <li onclick="window.location.href = '/network'">
+          <i class="fa-solid fa-map-location-dot"></i>
+          Metro Network
+        </li>
 
-            <li>
-                <i class="fa-solid fa-chart-line"></i>
-                Analytics
-            </li>
+        <!-- Travel Assistant -->
+        <li onclick="window.location.href = '/assistant'">
+          <i class="fa-solid fa-robot"></i>
+          Travel Assistant
+        </li>
 
-            <li>
-                <i class="fa-solid fa-clock-rotate-left"></i>
-                Prediction History
-            </li>
+        <!-- Analytics -->
+        <li onclick="window.location.href = '/analytics'">
+          <i class="fa-solid fa-chart-line"></i>
+          Analytics
+        </li>
 
-            <li>
-                <i class="fa-solid fa-circle-info"></i>
-                About
-            </li>
+        <!-- Prediction History -->
+        <li onclick="window.location.href = '/prediction'">
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          Prediction History
+        </li>
 
-        </ul>
-            <div class="version">
-        Version 1.0
-    </div>
-
+        <!-- About -->
+        <li onclick="window.location.href = '/about'">
+          <i class="fa-solid fa-circle-info"></i>
+          About
+        </li>
+      </ul>
+      <div class="version">Version 1.0</div>
     </aside>
 
     <!-- ================= Main ================= -->
 
     <main class="main-content">
+      <!-- ================= HEADER ================= -->
 
-    <!-- ================= HEADER ================= -->
-
-    <header class="top-header">
-
+      <header class="top-header">
         <div class="header-left">
+          <h1>Good Morning 👋</h1>
 
-            <h1>Good Morning 👋</h1>
-
-            <p>MetroAI Operations Control Center</p>
-
+          <p>MetroAI Operations Control Center</p>
         </div>
 
         <div class="header-right">
+          <div class="status">
+            <span class="dot"></span>
 
-            <div class="status">
+            AI Online
+          </div>
 
-                <span class="dot"></span>
+          <i class="fa-solid fa-bell"></i>
 
-                AI Online
+          <div class="profile">
+            <i class="fa-solid fa-user"></i>
 
-            </div>
-
-            <i class="fa-solid fa-bell"></i>
-
-            <div class="profile">
-
-                <i class="fa-solid fa-user"></i>
-
-                <span>Admin</span>
-
-            </div>
-
+            <span>Admin</span>
+          </div>
         </div>
+      </header>
 
-    </header>
+      <!-- ================= STATS ================= -->
 
-    <!-- ================= STATS ================= -->
-
-    <section class="stats-grid">
-
+      <section class="stats-grid">
         <div class="stat-card stations">
+          <i class="fa-solid fa-train-subway"></i>
 
-            <i class="fa-solid fa-train-subway"></i>
+          <h2>85</h2>
 
-            <h2>85</h2>
-
-            <p>Metro Stations</p>
-
+          <p>Metro Stations</p>
         </div>
 
         <div class="stat-card passengers">
+          <i class="fa-solid fa-users"></i>
 
-            <i class="fa-solid fa-users"></i>
+          <h2>12,540</h2>
 
-            <h2>12,540</h2>
-
-            <p>Today's Passengers</p>
-
+          <p>Today's Passengers</p>
         </div>
 
         <div class="stat-card predictions">
+          <i class="fa-solid fa-brain"></i>
 
-            <i class="fa-solid fa-brain"></i>
+          <h2>352</h2>
 
-            <h2>352</h2>
-
-            <p>Predictions Today</p>
-
+          <p>Predictions Today</p>
         </div>
 
         <div class="stat-card alerts">
+          <i class="fa-solid fa-triangle-exclamation"></i>
 
-            <i class="fa-solid fa-triangle-exclamation"></i>
+          <h2>4</h2>
 
-            <h2>4</h2>
-
-            <p>Active Alerts</p>
-
+          <p>Active Alerts</p>
         </div>
+      </section>
 
-    </section>
+      <!-- ================= METRO STATUS ================= -->
 
-    <!-- ================= METRO STATUS ================= -->
-
-    <section class="metro-status">
-
+      <section class="metro-status">
         <h2>🚇 Live Metro Status</h2>
 
         <div class="line">
+          <span>Purple Line</span>
 
-            <span>Purple Line</span>
-
-            <span class="busy">Busy</span>
-
+          <span class="busy">Busy</span>
         </div>
 
         <div class="line">
+          <span>Green Line</span>
 
-            <span>Green Line</span>
-
-            <span class="normal">Normal</span>
-
+          <span class="normal">Normal</span>
         </div>
 
         <div class="line">
+          <span>Yellow Line</span>
 
-            <span>Yellow Line</span>
-
-            <span class="moderate">Moderate</span>
-
+          <span class="moderate">Moderate</span>
         </div>
+      </section>
 
-    </section>
+      <!-- ================= RECENT ALERTS ================= -->
 
-    <!-- ================= RECENT ALERTS ================= -->
-
-    <section class="recent-alerts">
-
+      <section class="recent-alerts">
         <h2>Recent Alerts</h2>
 
         <ul>
+          <li>🚨 High crowd predicted at Majestic Station</li>
 
-            <li>🚨 High crowd predicted at Majestic Station</li>
+          <li>🚆 Purple Line delayed by 4 minutes</li>
 
-            <li>🚆 Purple Line delayed by 4 minutes</li>
-
-            <li>✅ Passenger prediction completed successfully</li>
-
+          <li>✅ Passenger prediction completed successfully</li>
         </ul>
-
-    </section>
-
-</main>
-
-</body>
-
+      </section>
+    </main>
+  </body>
 </html>
