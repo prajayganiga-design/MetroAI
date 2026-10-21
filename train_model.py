@@ -23,8 +23,85 @@ df = pd.read_csv(
     low_memory=False
 )
 
+# -----------------------------
+# Synchronize Station Names
+# -----------------------------
+
+print("\nLoading corrected station master...")
+
+station_master = pd.read_csv(
+    "data/station_master.csv"
+)
+
+# Clean station names
+station_master["station_name"] = (
+    station_master["station_name"]
+    .astype(str)
+    .str.strip()
+)
+
+# Make station IDs consistent
+df["station_id"] = df["station_id"].astype(str).str.strip()
+station_master["station_id"] = (
+    station_master["station_id"]
+    .astype(str)
+    .str.strip()
+)
+
+# Create station ID → corrected station name mapping
+station_name_map = (
+    station_master
+    .set_index("station_id")["station_name"]
+    .to_dict()
+)
+
+# Replace old station names with corrected names
+df["station_name"] = df["station_id"].map(
+    station_name_map
+)
+
+# Check for unmatched station IDs
+missing_station_names = df["station_name"].isna().sum()
+
+if missing_station_names > 0:
+
+    print(
+        f"ERROR: {missing_station_names} rows "
+        "could not be matched with station_master.csv"
+    )
+
+    missing_ids = (
+        df.loc[
+            df["station_name"].isna(),
+            "station_id"
+        ]
+        .unique()
+    )
+
+    print("Missing Station IDs:")
+    print(missing_ids)
+
+    raise ValueError(
+        "Station name synchronization failed."
+    )
+
+print("Station names synchronized successfully!")
+
+print("\nCorrected Yellow Line Stations:")
+
+print(
+    df[df["station_id"].str.startswith("Y")][
+        ["station_id", "station_name"]
+    ]
+    .drop_duplicates()
+    .sort_values("station_id")
+)
+
 # Replace missing event names
-df["special_event"] = df["special_event"].fillna("No Event")
+df["special_event"] = (
+    df["special_event"]
+    .fillna("No Event")
+)
 
 print("Dataset Loaded Successfully!")
 

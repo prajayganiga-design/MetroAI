@@ -1,0 +1,894 @@
+/* ========================================
+   METROFLOW AI - TRAVEL ASSISTANT
+======================================== */
+
+:root {
+    --background: #090b14;
+    --surface: #111421;
+    --surface-light: #171b2d;
+    --border: #272b40;
+
+    --text-primary: #f4f5ff;
+    --text-secondary: #a0a5bc;
+
+    --purple: #a78bfa;
+    --purple-bright: #8b5cf6;
+    --purple-glow: rgba(139, 92, 246, 0.22);
+
+    --green: #34d399;
+    --yellow: #facc15;
+
+    --danger: #fb7185;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(103, 80, 164, 0.13),
+            transparent 40%
+        ),
+        var(--background);
+
+    color: var(--text-primary);
+    font-family: "Segoe UI", Arial, sans-serif;
+    line-height: 1.6;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 1440px;
+    margin: auto;
+    padding: 0 6%;
+}
+
+
+/* HEADER */
+
+.topbar {
+    min-height: 88px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-icon {
+    width: 43px;
+    height: 43px;
+    display: grid;
+    place-items: center;
+    border-radius: 13px;
+    background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+    font-size: 22px;
+    font-weight: 800;
+    box-shadow: 0 0 25px var(--purple-glow);
+}
+
+.brand h1 {
+    font-size: 20px;
+    letter-spacing: -0.5px;
+}
+
+.brand h1 span {
+    color: var(--purple);
+}
+
+.brand p {
+    color: var(--text-secondary);
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+.back-link {
+    padding: 9px 15px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    transition: 0.25s;
+}
+
+.back-link:hover {
+    color: white;
+    border-color: var(--purple);
+    box-shadow: 0 0 15px var(--purple-glow);
+}
+
+
+/* MAIN CONTENT */
+
+.main-content {
+    max-width: 950px;
+    margin: auto;
+}
+
+.hero-section {
+    padding: 65px 0 35px;
+    text-align: center;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 7px 13px;
+    border: 1px solid rgba(167, 139, 250, 0.25);
+    border-radius: 30px;
+    background: rgba(139, 92, 246, 0.08);
+    color: var(--purple);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 10px var(--green);
+}
+
+.hero-section h2 {
+    margin: 22px 0 12px;
+    font-size: clamp(36px, 6vw, 58px);
+    line-height: 1.12;
+    letter-spacing: -2px;
+}
+
+.hero-section h2 span {
+    color: var(--purple);
+    text-shadow: 0 0 35px var(--purple-glow);
+}
+
+.hero-section > p {
+    max-width: 510px;
+    margin: 0 auto;
+    color: var(--text-secondary);
+    font-size: 15px;
+}
+
+
+/* PLANNER */
+
+.planner-card,
+.result-card {
+    border: 1px solid var(--border);
+    border-radius: 19px;
+    background: linear-gradient(
+        145deg,
+        rgba(23, 27, 45, 0.96),
+        rgba(15, 18, 31, 0.98)
+    );
+
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.18);
+}
+
+.planner-card {
+    padding: 28px;
+}
+
+.card-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 28px;
+}
+
+.section-label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--purple);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.card-heading h3,
+.results-heading h3 {
+    font-size: 21px;
+    font-weight: 650;
+}
+
+.route-icon {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--purple);
+    font-size: 24px;
+}
+
+.station-fields {
+    display: grid;
+    grid-template-columns: 1fr 42px 1fr;
+    align-items: end;
+    gap: 14px;
+}
+
+.station-field label {
+    display: block;
+    margin-bottom: 9px;
+    color: var(--text-secondary);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 55px;
+    padding: 0 15px;
+    border: 1px solid #30344b;
+    border-radius: 11px;
+    background: #0c0f1b;
+    transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.input-wrapper:focus-within {
+    border-color: var(--purple);
+    box-shadow: 0 0 0 3px var(--purple-glow);
+}
+
+.station-dot {
+    flex-shrink: 0;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+}
+
+.source-dot {
+    background: var(--green);
+    box-shadow: 0 0 10px rgba(52, 211, 153, 0.5);
+}
+
+.destination-dot {
+    background: var(--purple);
+    box-shadow: 0 0 10px var(--purple-glow);
+}
+
+.input-wrapper input,
+.input-wrapper select {
+    width: 100%;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--text-primary);
+    font-size: 13px;
+}
+
+.input-wrapper select {
+    cursor: pointer;
+    padding: 16px 0;
+    appearance: auto;
+}
+
+.input-wrapper select option {
+    background: #111421;
+    color: #f4f5ff;
+}
+
+.input-wrapper select:invalid {
+    color: #a0a5bc;
+}
+
+.input-wrapper input::placeholder {
+    color: #70768f;
+}
+
+.swap-button {
+    width: 42px;
+    height: 42px;
+    margin-bottom: 6px;
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    background: var(--surface-light);
+    color: var(--purple);
+    font-size: 22px;
+    transition: 0.25s;
+}
+
+.swap-button:hover {
+    background: var(--purple-bright);
+    color: white;
+    transform: rotate(180deg);
+}
+
+.form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    margin-top: 25px;
+}
+
+.form-footer p {
+    color: var(--text-secondary);
+    font-size: 11px;
+}
+
+.info-icon {
+    color: var(--purple);
+    margin-right: 4px;
+}
+
+.primary-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    min-height: 47px;
+    padding: 0 22px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(110deg, #8b5cf6, #6d4bd1);
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    box-shadow: 0 5px 22px var(--purple-glow);
+    transition: 0.25s;
+}
+
+.primary-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(139, 92, 246, 0.35);
+}
+
+.primary-button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+    transform: none;
+}
+
+
+/* STATUS MESSAGE */
+
+.status-message {
+    margin-top: 20px;
+    padding: 15px 18px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface);
+    font-size: 13px;
+}
+
+.status-message.error {
+    border-color: rgba(251, 113, 133, 0.4);
+    color: var(--danger);
+}
+
+.status-message.info {
+    border-color: rgba(167, 139, 250, 0.35);
+    color: var(--purple);
+}
+
+
+/* RESULTS */
+
+#routeResults {
+    margin-top: 45px;
+}
+
+.results-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.live-badge {
+    padding: 6px 10px;
+    border: 1px solid rgba(52, 211, 153, 0.25);
+    border-radius: 7px;
+    background: rgba(52, 211, 153, 0.08);
+    color: var(--green);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.summary-card {
+    padding: 21px;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    background: var(--surface);
+    transition: 0.25s;
+}
+
+.summary-card:hover {
+    border-color: rgba(167, 139, 250, 0.45);
+    transform: translateY(-3px);
+}
+
+.summary-icon {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--purple);
+    font-size: 23px;
+}
+
+.summary-card p {
+    color: var(--text-secondary);
+    font-size: 11px;
+}
+
+.summary-card h4 {
+    margin-top: 5px;
+    font-size: 25px;
+}
+
+.result-card {
+    margin-bottom: 18px;
+    padding: 25px;
+}
+
+.result-card h4 {
+    font-size: 15px;
+}
+
+.line-list,
+.interchange-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.line-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 13px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: #0c0f1b;
+    font-size: 12px;
+}
+
+.line-color {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+}
+
+.line-color.green {
+    background: var(--green);
+}
+
+.line-color.yellow {
+    background: var(--yellow);
+}
+
+.line-color.purple {
+    background: var(--purple);
+}
+
+.line-color.default {
+    background: #94a3b8;
+}
+
+.interchange-chip {
+    padding: 9px 12px;
+    border: 1px solid rgba(167, 139, 250, 0.25);
+    border-radius: 9px;
+    background: rgba(139, 92, 246, 0.08);
+    color: #d3c5ff;
+    font-size: 12px;
+}
+
+.divider {
+    height: 1px;
+    margin: 24px 0;
+    background: var(--border);
+}
+
+.card-description {
+    margin-top: 5px;
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+
+/* STATION SEQUENCE */
+
+.station-route {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+}
+
+.station-item {
+    position: relative;
+    display: flex;
+    gap: 16px;
+    min-height: 58px;
+}
+
+.station-marker-column {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 20px;
+    flex-shrink: 0;
+}
+
+.station-marker {
+    z-index: 1;
+    width: 12px;
+    height: 12px;
+    margin-top: 5px;
+    border: 3px solid var(--purple);
+    border-radius: 50%;
+    background: var(--surface);
+}
+
+.station-connector {
+    position: absolute;
+    top: 17px;
+    bottom: -5px;
+    width: 2px;
+    background: #48405f;
+}
+
+.station-item.interchange .station-marker {
+    border-color: var(--yellow);
+    box-shadow: 0 0 10px rgba(250, 204, 21, 0.2);
+}
+
+.station-item.destination .station-marker {
+    border-color: var(--green);
+}
+
+.station-name {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.station-line {
+    display: block;
+    margin-top: 2px;
+    color: var(--text-secondary);
+    font-size: 10px;
+}
+
+.station-tag {
+    display: inline-block;
+    margin-top: 5px;
+    padding: 2px 7px;
+    border-radius: 5px;
+    background: rgba(250, 204, 21, 0.1);
+    color: var(--yellow);
+    font-size: 9px;
+}
+
+
+/* INSTRUCTIONS */
+
+.instructions-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.instructions-heading h4 {
+    font-size: 19px;
+}
+
+.guide-icon {
+    color: var(--purple);
+    font-size: 25px;
+}
+
+.instruction-item {
+    display: flex;
+    gap: 15px;
+    padding: 17px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.instruction-item:last-child {
+    border-bottom: none;
+}
+
+.instruction-number {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(167, 139, 250, 0.3);
+    border-radius: 10px;
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--purple);
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.instruction-text {
+    padding-top: 4px;
+    color: #d7d9e8;
+    font-size: 13px;
+}
+
+.distance-note {
+    margin-top: 20px;
+    padding: 12px;
+    border-radius: 9px;
+    background: rgba(250, 204, 21, 0.06);
+    color: #c7b981;
+    font-size: 11px;
+}
+
+
+/* EMPTY STATE */
+
+.initial-info {
+    margin: 35px 0;
+    padding: 35px 20px;
+    border: 1px dashed #30344b;
+    border-radius: 17px;
+    text-align: center;
+}
+
+.initial-icon {
+    margin-bottom: 12px;
+    color: var(--purple);
+    font-size: 32px;
+}
+
+.initial-info h3 {
+    font-size: 17px;
+}
+
+.initial-info p {
+    max-width: 420px;
+    margin: 8px auto 0;
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+
+/* FOOTER */
+
+.footer {
+    margin-top: 55px;
+    padding: 25px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    text-align: center;
+}
+
+.footer p {
+    color: var(--text-secondary);
+    font-size: 11px;
+}
+
+.footer span {
+    margin: 0 8px;
+    color: var(--purple);
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+
+    .app-container {
+        padding: 0 5%;
+    }
+
+    .topbar {
+        min-height: 75px;
+    }
+
+    .brand h1 {
+        font-size: 17px;
+    }
+
+    .back-link {
+        padding: 7px 10px;
+        font-size: 11px;
+    }
+
+    .hero-section {
+        padding: 45px 0 28px;
+    }
+
+    .hero-section h2 {
+        letter-spacing: -1px;
+    }
+
+    .hero-section > p {
+        font-size: 13px;
+    }
+
+    .planner-card {
+        padding: 20px;
+    }
+
+    .card-heading h3,
+    .results-heading h3 {
+        font-size: 18px;
+    }
+
+    .station-fields {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .swap-button {
+        justify-self: center;
+        transform: rotate(90deg);
+        margin: 0;
+    }
+
+    .swap-button:hover {
+        transform: rotate(270deg);
+    }
+
+    .form-footer {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .primary-button {
+        width: 100%;
+    }
+
+    .summary-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .summary-card {
+        padding: 16px;
+    }
+
+    .summary-icon {
+        display: inline-block;
+        margin: 0 10px 0 0;
+    }
+
+    .summary-card p,
+    .summary-card h4 {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .summary-card h4 {
+        float: right;
+        margin: 0;
+        font-size: 20px;
+    }
+
+    .result-card {
+        padding: 20px;
+    }
+
+    .results-heading {
+        align-items: flex-start;
+    }
+}
+
+/* ==================================
+   INTERCHANGE & PLATFORM GUIDANCE
+================================== */
+
+.interchange-guidance-card {
+    border: 1px solid rgba(167, 139, 250, 0.3);
+}
+
+.interchange-guidance-item {
+    margin-top: 16px;
+    padding: 18px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: rgba(10, 13, 25, 0.75);
+}
+
+.interchange-guidance-item h5 {
+    margin-bottom: 12px;
+    color: var(--purple);
+    font-size: 15px;
+}
+
+.interchange-detail {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    font-size: 12px;
+}
+
+.interchange-detail:last-of-type {
+    border-bottom: none;
+}
+
+.interchange-detail span:first-child {
+    color: var(--text-secondary);
+}
+
+.interchange-detail span:last-child {
+    text-align: right;
+    color: var(--text-primary);
+}
+
+.interchange-passenger-note {
+    margin-top: 14px;
+    padding: 12px;
+    border-radius: 9px;
+    background: rgba(139, 92, 246, 0.09);
+    color: #d8ccff;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.verification-badge {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    background: rgba(250, 204, 21, 0.08);
+    color: var(--yellow);
+    font-size: 10px;
+}
+
+@media (max-width: 500px) {
+    .interchange-detail {
+        flex-direction: column;
+        gap: 3px;
+    }
+
+    .interchange-detail span:last-child {
+        text-align: left;
+    }
+}
+

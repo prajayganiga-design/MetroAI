@@ -1,105 +1,84 @@
-# 🚇 MetroAI
+# MetroAI – Smart Metro Operations & Passenger Assistance System
 
-### AI-Powered Metro Operations & Passenger Assistance System
+An AI-powered metro operations and passenger assistance system featuring passenger demand prediction, intelligent route planning, and station interchange guidance.
 
-> 🚧 **Work in Progress:** MetroAI is currently under active development.
-> The current implementation focuses on passenger demand prediction,
-> journey planning, and the initial operations dashboard. Additional
-> modules are being developed progressively.
+## Overview
 
----
+MetroAI combines machine learning, metro station data, and a Flask web application to support passenger demand prediction and journey planning.
 
-## 📌 Overview
+The project includes a Random Forest model for passenger demand prediction and a route-planning module that helps users navigate between metro stations and identify line changes.
 
-MetroAI is an AI-powered metro operations and passenger assistance
-system designed to analyze passenger demand and provide intelligent
-insights for metro operations and passenger journey planning.
+## Features
 
-The project combines machine learning, passenger-flow data, and a
-web-based Flask application to provide demand predictions and
-metro operation insights.
+### 1. AI Passenger Demand Prediction
+- Predicts passenger arrivals using a Random Forest regression model.
+- Estimates station crowd levels based on predicted passenger arrivals and station capacity.
+- Provides travel recommendations based on predicted crowd conditions.
 
-The long-term goal of MetroAI is to support smarter metro operations
-and provide passengers with useful information for planning their
-journeys.
+### 2. Metro Travel Assistant
+- Select source and destination stations.
+- Calculate routes across metro lines.
+- Display the sequence of stations along a route.
+- Identify interchange stations and line changes.
+- Provide step-by-step travel instructions.
 
----
+### 3. Interchange & Platform Guidance
+- Displays arriving and connecting metro lines.
+- Provides interchange floor and platform-level information from a station details dataset.
+- Displays passenger guidance for changing metro lines.
+- Supports journeys involving multiple interchanges.
 
-## 📸 Current Progress
+**Note:** Station floor and platform details are based on collected station information and should be checked against current station signage.
 
-MetroAI is currently in active development. The following screenshots
-show the main modules that have been implemented so far.
+### 4. Metro Network
+- Displays metro station and network information.
+- Supports visualization of metro routes and station connections.
 
-### 🚇 Operations Dashboard
+### 5. Operations Dashboard
+- Provides an overview of station information and passenger activity.
+- Presents passenger prediction and operational information.
 
-The MetroAI Operations Dashboard provides an overview of metro
-operations, including station information, passenger activity,
-prediction statistics, metro-line status, and operational alerts.
+## Screenshots
+
+### Operations Dashboard
 
 ![MetroAI Operations Dashboard](dashboard.png)
 
----
+### AI Journey Planner
 
-### 🤖 AI Journey Planner
+![MetroAI AI Journey Planner](ai-journey-planner.png)
 
-The AI Journey Planner allows users to enter journey-related
-information such as source station, destination station, travel
-date, departure time, weather conditions, holidays, and special
-events.
+## Technology Stack
 
-The system then provides passenger-demand prediction results
-including crowd level, expected passengers, metro line,
-recommended travel time, and prediction confidence.
+- **Frontend:** HTML, CSS, JavaScript
+- **Backend:** Python, Flask
+- **Machine Learning:** scikit-learn, Random Forest Regressor
+- **Data Processing:** pandas, NumPy
+- **Model Persistence:** Joblib
+- **Metro Routing:** Python-based route engine
+- **Network Visualization:** JavaScript and Leaflet/OpenStreetMap, where configured
 
-![AI Journey Planner](ai-journey-planner.png)
-
----
-
-## ✨ Current Features
-
-### 🤖 Passenger Demand Prediction
-
-Uses a machine learning model to predict passenger demand based
-on available passenger-flow data and journey-related parameters.
-
-### 🚇 Operations Dashboard
-
-Provides an overview of metro stations, passenger activity,
-predictions, metro-line status, and operational alerts.
-
-### 🧭 AI Journey Planner
-
-Allows users to enter journey details and receive passenger-demand
-predictions and travel-related insights.
-
-### 📊 Passenger Flow Analysis
-
-Processes passenger-flow information for use in prediction and
-analysis.
-
-### 🗺️ Metro Data Processing
-
-Includes metro station and network-related data for future
-analysis and intelligent passenger assistance.
-
----
-
-## 🧠 Machine Learning
-
-MetroAI currently uses a **Random Forest** machine learning model
-for passenger demand prediction.
-
-### Prediction Workflow
+## Project Structure
 
 ```text
-Passenger & Journey Data
-          ↓
-     Data Processing
-          ↓
-    Feature Preparation
-          ↓
-   Random Forest Model
-          ↓
- Passenger Demand Prediction
-          ↓
-   Dashboard / Journey Planner
+MetroAI/
+├── app.py
+├── train_model.py
+├── route_engine.py
+├── requirements.txt
+├── README.md
+├── dashboard.png
+├── ai-journey-planner.png
+├── data/
+│   ├── station_master.csv
+│   ├── interchange_details.csv
+│   ├── special_events.csv
+│   └── passenger_flow.csv
+├── models/
+│   ├── model.pkl
+│   └── label_encoders.pkl
+├── templates/
+├── static/
+│   ├── css/
+│   └── js/
+└── xtra folder/

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Metro Network | MetroAI</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+        <!-- Leaflet Map -->
+    <link rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Sidebar CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/sidebar.css') }}">
+
+    <!-- Network CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/network.css') }}">
+
+    
+</head>
+
+<body>
+
+<div class="network-page">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <i class="fa-solid fa-train-subway"></i>
+            <span>MetroAI</span>
+        </div>
+
+        <ul>
+
+            <li onclick="window.location.href='/dashboard'">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+            </li>
+
+            <li onclick="window.location.href='/planner'">
+                <i class="fa-solid fa-brain"></i>
+                AI Journey Planner
+            </li>
+
+            <li onclick="window.location.href='/stations'">
+                <i class="fa-solid fa-train-subway"></i>
+                Stations
+            </li>
+
+            <li class="active">
+                <i class="fa-solid fa-map-location-dot"></i>
+                Metro Network
+            </li>
+
+            <li onclick="window.location.href='/assistant'">
+                <i class="fa-solid fa-robot"></i>
+                Travel Assistant
+            </li>
+
+            <li onclick="window.location.href='/analytics'">
+                <i class="fa-solid fa-chart-line"></i>
+                Analytics
+            </li>
+
+            <li onclick="window.location.href='/prediction'">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                Prediction History
+            </li>
+
+            <li onclick="window.location.href='/about'">
+                <i class="fa-solid fa-circle-info"></i>
+                About
+            </li>
+
+        </ul>
+
+    </aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="network-main">
+
+        <!-- Page Header -->
+
+        <div class="network-header">
+
+            <div>
+
+                <span class="page-label">
+                    METROAI NETWORK
+                </span>
+
+                <h1>
+                    Bengaluru Metro Network
+                </h1>
+
+                <p>
+                    Explore metro lines, stations, interchanges and
+                    AI-powered crowd information.
+                </p>
+
+            </div>
+
+            <div class="network-status">
+
+                <span class="status-dot"></span>
+
+                Network Data Connected
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= NETWORK CONTROLS ================= -->
+
+        <section class="network-controls">
+
+            <div class="control-title">
+
+                <i class="fa-solid fa-layer-group"></i>
+
+                <span>Network View</span>
+
+            </div>
+
+
+            <div class="line-filters">
+
+                <button class="line-filter active"
+                        data-line="all">
+
+                    <span class="filter-dot all-dot"></span>
+
+                    All Lines
+
+                </button>
+
+
+                <button class="line-filter"
+                        data-line="Purple">
+
+                    <span class="filter-dot purple-dot"></span>
+
+                    Purple Line
+
+                </button>
+
+
+                <button class="line-filter"
+                        data-line="Green">
+
+                    <span class="filter-dot green-dot"></span>
+
+                    Green Line
+
+                </button>
+
+
+                <button class="line-filter"
+                        data-line="Yellow">
+
+                    <span class="filter-dot yellow-dot"></span>
+
+                    Yellow Line
+
+                </button>
+
+            </div>
+
+
+            <div class="view-options">
+
+                <button class="view-option active"
+                        data-view="network">
+
+                    <i class="fa-solid fa-route"></i>
+
+                    Network
+
+                </button>
+
+
+                <button class="view-option"
+                        data-view="crowd">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    Crowd
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= MAP SECTION ================= -->
+
+        <section class="network-map-card">
+
+            <div class="map-header">
+
+                <div>
+
+                    <h2>
+                        <i class="fa-solid fa-map"></i>
+                        Metro Network Map
+                    </h2>
+
+                    <p>
+                        Interactive metro network visualization
+                    </p>
+
+                </div>
+
+
+                <div class="map-legend">
+
+                    <div class="legend-item">
+                        <span class="legend-dot purple-dot"></span>
+                        Purple
+                    </div>
+
+                    <div class="legend-item">
+                        <span class="legend-dot green-dot"></span>
+                        Green
+                    </div>
+
+                    <div class="legend-item">
+                        <span class="legend-dot yellow-dot"></span>
+                        Yellow
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Map will be added in Step 2 -->
+
+            <div id="metro-map" class="metro-map">
+
+                <div class="map-placeholder">
+
+                    <i class="fa-solid fa-map-location-dot"></i>
+
+                    <h3>
+                        Metro Network Map
+                    </h3>
+
+                    <p>
+                        Interactive Bengaluru metro map will appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= NETWORK SUMMARY ================= -->
+
+        <section class="network-summary">
+
+            <div class="network-stat">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-train-subway"></i>
+                </div>
+
+                <div>
+
+                    <span>Stations</span>
+
+                    <strong id="total-stations">
+                        85
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="network-stat">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-route"></i>
+                </div>
+
+                <div>
+
+                    <span>Metro Lines</span>
+
+                    <strong id="total-lines">
+                        3
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="network-stat">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-arrows-turn-to-dots"></i>
+                </div>
+
+                <div>
+
+                    <span>Interchanges</span>
+
+                    <strong id="total-interchanges">
+                        6
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="network-stat">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+
+                <div>
+
+                    <span>Operational</span>
+
+                    <strong id="operational-stations">
+                        85
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<!-- Leaflet Map -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<!-- Network JavaScript -->
+<script src="{{ url_for('static', filename='js/network.js') }}"></script>
+
+</body>
+
+</html>

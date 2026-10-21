@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MetroFlow AI | Travel Assistant</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/assistant.css') }}"
+    >
+
+    <script
+        src="{{ url_for('static', filename='js/assistant.js') }}"
+        defer
+    ></script>
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <!-- Header -->
+        <header class="topbar">
+            <a href="/dashboard" class="brand">
+                <div class="brand-icon">M</div>
+
+                <div>
+                    <h1>MetroFlow <span>AI</span></h1>
+                    <p>SMART METRO TRAVEL</p>
+                </div>
+            </a>
+
+            <a href="/dashboard" class="back-link">
+                ← Dashboard
+            </a>
+        </header>
+
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <section class="hero-section">
+
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    INTELLIGENT TRAVEL ASSISTANT
+                </div>
+
+                <h2>
+                    Your journey,<br>
+                    <span>made smarter.</span>
+                </h2>
+
+                <p>
+                    Find metro routes, discover interchanges,
+                    and get step-by-step travel directions.
+                </p>
+
+            </section>
+
+
+            <!-- Route Planner -->
+            <section class="planner-card">
+
+                <div class="card-heading">
+                    <div>
+                        <span class="section-label">PLAN YOUR JOURNEY</span>
+                        <h3>Where do you want to go?</h3>
+                    </div>
+
+                    <div class="route-icon">↗</div>
+                </div>
+
+
+                <form id="routeForm">
+
+                    <div class="station-fields">
+
+                        <div class="station-field">
+                            <label for="sourceStation">
+                                FROM
+                            </label>
+
+                            <div class="input-wrapper">
+                                <span class="station-dot source-dot"></span>
+
+                                    <select id="sourceStation" required>
+                                        <option value="">Loading stations...</option>
+                                    </select>
+                            </div>
+                        </div>
+
+
+                        <button
+                            type="button"
+                            id="swapStations"
+                            class="swap-button"
+                            title="Swap stations"
+                            aria-label="Swap source and destination"
+                        >
+                            ⇅
+                        </button>
+
+
+                        <div class="station-field">
+                            <label for="destinationStation">
+                                TO
+                            </label>
+
+                            <div class="input-wrapper">
+                                <span class="station-dot destination-dot"></span>
+
+                            <select id="destinationStation" required>
+                                <option value="">Loading stations...</option>
+                            </select>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-footer">
+                        <p>
+                            <span class="info-icon">ⓘ</span>
+                            Routes are calculated using your station dataset.
+                        </p>
+
+                        <button
+                            type="submit"
+                            id="findRouteButton"
+                            class="primary-button"
+                        >
+                            <span>Find Route</span>
+                            <span>→</span>
+                        </button>
+                    </div>
+
+                </form>
+
+            </section>
+
+
+            <!-- Status Message -->
+            <div
+                id="statusMessage"
+                class="status-message"
+                role="status"
+                aria-live="polite"
+                hidden
+            ></div>
+
+
+            <!-- Route Results -->
+            <section id="routeResults" hidden>
+
+                <div class="results-heading">
+                    <div>
+                        <span class="section-label">YOUR JOURNEY</span>
+                        <h3>Route Overview</h3>
+                    </div>
+
+                    <span class="live-badge">
+                        ROUTE FOUND
+                    </span>
+                </div>
+
+
+                <!-- Summary Cards -->
+                <div class="summary-grid">
+
+                    <article class="summary-card">
+                        <span class="summary-icon">↔</span>
+                        <p>Station Connections</p>
+                        <h4 id="connectionCount">--</h4>
+                    </article>
+
+                    <article class="summary-card">
+                        <span class="summary-icon">⇄</span>
+                        <p>Line Transfers</p>
+                        <h4 id="transferCount">--</h4>
+                    </article>
+
+                    <article class="summary-card">
+                        <span class="summary-icon">⌖</span>
+                        <p>Approx. Distance</p>
+                        <h4 id="distanceValue">--</h4>
+                    </article>
+
+                </div>
+
+
+                <!-- Lines and Interchanges -->
+                <article class="result-card">
+
+                    <h4>Lines Used</h4>
+
+                    <div id="lineList" class="line-list"></div>
+
+                    <div class="divider"></div>
+
+                    <h4>Interchanges</h4>
+
+                    <div id="interchangeList" class="interchange-list"></div>
+
+                </article>
+
+
+                <!-- Station Route -->
+                <article class="result-card">
+
+                    <h4>Station-by-Station Route</h4>
+
+                    <p class="card-description">
+                        Follow the station sequence shown below.
+                    </p>
+
+                    <div id="stationRoute" class="station-route"></div>
+
+                </article>
+
+
+                <!-- Travel Instructions -->
+                <article class="result-card instructions-card">
+
+                    <div class="instructions-heading">
+                        <div>
+                            <span class="section-label">STEP-BY-STEP GUIDE</span>
+                            <!-- Interchange Guidance -->
+                            <article class="result-card interchange-guidance-card">
+
+                                <div class="instructions-heading">
+                                    <div>
+                                        <span class="section-label">PASSENGER ASSISTANCE</span>
+                                        <h4>Interchange & Platform Guidance</h4>
+                                    </div>
+
+                                    <span class="guide-icon">⇄</span>
+                                </div>
+
+                                <div id="interchangeGuidanceList">
+                                    <p>Select your stations to view interchange guidance.</p>
+                                </div>
+
+                            </article>
+                            <h4>Travel Instructions</h4>
+                        </div>
+
+                        <span class="guide-icon">✦</span>
+                    </div>
+
+                    <div id="travelInstructions"></div>
+
+                    <p class="distance-note" id="distanceNote"></p>
+
+                </article>
+
+            </section>
+
+
+            <!-- Initial Information -->
+            <section id="initialInfo" class="initial-info">
+
+                <div class="initial-icon">✧</div>
+
+                <h3>Ready for your next journey?</h3>
+
+                <p>
+                    Enter your starting station and destination above
+                    to discover your route.
+                </p>
+
+            </section>
+
+        </main>
+
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>
+                MetroFlow AI &copy; 2026
+                <span>•</span>
+                Intelligent Metro Travel Assistance
+            </p>
+        </footer>
+
+    </div>
+
+</body>
+</html>

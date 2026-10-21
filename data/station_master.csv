@@ -72,19 +72,19 @@ G031,Thalaghattapura,Green,Normal,No,No,Residential,RESIDENTIAL,South,12.8712883
 G032,Silk Institute,Green,Terminal,No,Yes,Educational,EDUCATIONAL,South,12.861884923651420,77.52992270250750,2021,Yes,2,4,6000,Operational,780,1.6,0.6
 
 
-Y001,RV Road,Yellow,Interchange,Yes,No,Commercial,COMMERCIAL,South,12.922079655733485,77.58049742572266,2025,Yes,2,5,9000,Operational,1000,1.8,1.3
-Y002,Ragigudda,Yellow,Normal,No,No,Residential,RESIDENTIAL,South,12.913934802677734,77.58984940253494,2025,No,2,3,4000,Operational,630,1.7,0.9
-Y003,Jayadeva Hospital,Yellow,Interchange,Yes,No,Hospital,HOSPITAL,South,12.916313831811635,77.59972862940677,2025,Yes,2,5,9000,Operational,900,1.3,1
-Y004,BTM Layout,Yellow,Normal,No,No,Commercial,COMMERCIAL,South,12.916640057017430,77.61093001977224,2025,Yes,2,4,6000,Operational,930,1.8,1.3
-Y005,Silk Board,Yellow,Interchange,Yes,No,Transport Hub,TRANSPORT_HUB,South,12.917209646026925,77.62277791670581,2025,Yes,4,5,9000,Operational,1800,2.2,1.15
-Y006,Hongasandra,Yellow,Normal,No,No,Residential,RESIDENTIAL,South,12.916658462617165,77.63480795919615,2025,No,2,3,4000,Operational,630,1.7,0.9
-Y007,Bommanahalli,Yellow,Normal,No,No,Commercial,COMMERCIAL,South,12.908780586856840,77.64572132669282,2025,Yes,2,4,6000,Operational,930,1.8,1.3
-Y008,Kudlu Gate,Yellow,Normal,No,No,Commercial,COMMERCIAL,South,12.900484839698845,77.65785773362442,2025,No,2,3,4000,Operational,860,1.8,1.3
-Y009,Singasandra,Yellow,Normal,No,No,Residential,RESIDENTIAL,South,12.893682401277995,77.66485373754353,2025,No,2,2,2500,Operational,570,1.7,0.9
-Y010,Hosa Road,Yellow,Normal,No,No,Residential,RESIDENTIAL,South,12.886740386936334,77.67503094371475,2025,Yes,2,3,4000,Operational,630,1.7,0.9
-Y011,Basapura Road,Yellow,Normal,No,No,Residential,RESIDENTIAL,South,12.878930298025104,77.68475589373815,2025,No,2,2,2500,Operational,570,1.7,0.9
-Y012,Electronic City,Yellow,Normal,No,No,IT Hub,IT_COMMUTER,South,12.848984779087368,77.67881851162241,2025,Yes,2,5,9000,Operational,1100,2.3,0.75
-Y013,Huskur Road,Yellow,Normal,No,No,Industrial,INDUSTRIAL,South,12.839490810970036,77.68532107980273,2025,No,2,3,4000,Operational,730,1.9,0.8
-Y014,Hebbagodi,Yellow,Normal,No,No,Industrial,INDUSTRIAL,South,12.829643549854663,77.69155754718178,2025,No,2,3,4000,Operational,730,1.9,0.8
-Y015,Bommasandra Industrial Area,Yellow,Normal,No,No,Industrial,INDUSTRIAL,South,12.819577275842530,77.69645887857253,2025,Yes,2,4,6000,Operational,790,1.9,0.8
-Y016,Bommasandra,Yellow,Terminal,No,Yes,Industrial,INDUSTRIAL,South,12.811284755532070,77.69983167240441,2025,Yes,2,4,6000,Operational,790,1.9,0.8
+Y001,Rashtreeya Vidyalaya Road,Yellow,Interchange,Yes,No,Commercial,COMMERCIAL,South,12.921580062175837,77.58030432699523,2025,Yes,2,5,9000,Operational,1000,1.8,1.3
+Y002,Ragigudda,Yellow,Normal,No,No,Residential,RESIDENTIAL,South,12.916937044436432,77.58811491944141,2025,No,2,3,4000,Operational,630,1.7,0.9
+Y003,Jayadeva Hospital,Yellow,Interchange,Yes,No,Hospital,HOSPITAL,South,12.916581494388195,77.59980935088332,2025,Yes,2,5,9000,Operational,900,1.3,1
+Y004,BTM Layout,Yellow,Normal,No,No,Commercial,COMMERCIAL,South,12.91639326184845,77.60811346997708,2025,Yes,2,4,6000,Operational,930,1.8,1.3
+Y005,Central Silk Board,Yellow,Interchange,Yes,No,Transport Hub,TRANSPORT_HUB,South,12.916309602901755,77.62040871606416,2025,Yes,4,5,9000,Operational,1800,2.2,1.15
+Y006,Bommanahalli,Yellow,Normal,No,No,Commercial,COMMERCIAL,South,12.910788050178365,77.6263954066705,2025,Yes,2,4,6000,Operational,930,1.8,1.3
+Y007,Hongasandra,Yellow,Normal,No,No,Residential,RESIDENTIAL,South,12.901564275197902,77.63201731671333,2025,No,2,3,4000,Operational,630,1.7,0.9
+Y008,Kudlu Gate,Yellow,Normal,No,No,Commercial,COMMERCIAL,South,12.88995950750853,77.6393915313331,2025,No,2,3,4000,Operational,860,1.8,1.3
+Y009,Singasandra,Yellow,Normal,No,No,Residential,RESIDENTIAL,South,12.880606490911724,77.64459712493286,2025,No,2,2,2500,Operational,570,1.7,0.9
+Y010,Hosa Road,Yellow,Normal,No,No,Residential,RESIDENTIAL,South,12.870954607235095,77.65240551582984,2025,Yes,2,3,4000,Operational,630,1.7,0.9
+Y011,	Beratena Agrahara,Yellow,Normal,No,No,Residential,RESIDENTIAL,South,12.85627706264175,77.66332705534307,2025,No,2,2,2500,Operational,570,1.7,0.9
+Y012,Electronic City,Yellow,Normal,No,No,IT Hub,IT_COMMUTER,South,12.856540082718247,77.6632844805006,2025,Yes,2,5,9000,Operational,1100,2.3,0.75
+Y013,Infosys Foundation Konappana Agrahara,Yellow,Normal,No,No,Industrial,INDUSTRIAL,South,12.846265301448142,77.67111838863734,2025,No,2,3,4000,Operational,730,1.9,0.8
+Y014,Huskur Road,Yellow,Normal,No,No,Industrial,INDUSTRIAL,South,12.838801516419265,77.67744675745203,2025,No,2,3,4000,Operational,730,1.9,0.8
+Y015,Biocon Hebbagodi,Yellow,Normal,No,No,Industrial,INDUSTRIAL,South,12.828710812238963,77.68124042221633,2025,Yes,2,4,6000,Operational,790,1.9,0.8
+Y016,Delta Electronics Bommasandra,Yellow,Terminal,No,Yes,Industrial,INDUSTRIAL,South,12.819554566256349,77.68874260122776,2025,Yes,2,4,6000,Operational,790,1.9,0.8
