@@ -83,6 +83,34 @@ It also features Metro-Pilot, an intelligent passenger assistant that helps comm
     7. Station Directory
     8. About MetroAI
 
+
+## 📸 Project Screenshots
+
+### Dashboard
+![Dashboard](Screenshots/dashboard.png)
+
+### Passenger Flow Analytics
+![Analytics](Screenshots/analytics.png)
+
+### Metro-Pilot Assistant
+![Assistant](Screenshots/assistant.png)
+
+### Route Planner
+![Route Planner](Screenshots/planner.png)
+
+### Metro Network
+![Network](Screenshots/network.png)
+
+### Station Directory
+![Stations](Screenshots/stations.png)
+
+### Prediction History
+![Prediction History](Screenshots/predictionhistory.png)
+
+### About
+![About](Screenshots/about.png)
+
+
 ## 🛠️ Technology Stack
 
 ## 🏗️ System Architecture
