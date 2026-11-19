@@ -67,6 +67,37 @@ It also features Metro-Pilot, an intelligent passenger assistant that helps comm
 
 ---
 
+# 🚇 MetroAI – Smart Metro Operations & Passenger Assistance System
+
+## 🌟 Overview
+
+## ✨ Key Features
+
+## 📸 Application Screenshots
+    1. Operations Dashboard
+    2. Passenger Analytics
+    3. AI Prediction History
+    4. Metro-Pilot Assistant
+    5. Intelligent Route Planner
+    6. Metro Network Explorer
+    7. Station Directory
+    8. About MetroAI
+
+## 🛠️ Technology Stack
+
+## 🏗️ System Architecture
+
+## 📂 Project Structure
+
+## 🚀 Installation & Setup
+
+## 📊 Dataset Information
+
+## 🔮 Future Enhancements
+
+## 👨‍💻 Developer
+
+
 ## 🛠️ Technology Stack
 
 | Category | Technologies |
