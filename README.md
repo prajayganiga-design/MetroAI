@@ -1,116 +1,229 @@
-# MetroAI – Smart Metro Operations & Passenger Assistance System
+# 🚇 MetroAI – Smart Metro Operations & Passenger Assistance System
 
-An AI-powered metro operations and passenger assistance system featuring passenger demand prediction, intelligent route planning, station interchange guidance, geospatial network intelligence, deep passenger analytics, and persistent prediction history.
+An AI-powered metro operations and passenger assistance platform designed to optimize passenger flow, predict station congestion, and simplify urban metro navigation.
 
-## Overview
+MetroAI combines machine learning, passenger analytics, intelligent route planning, and an interactive dashboard to provide smarter metro operations and a better passenger experience.
 
-MetroAI combines machine learning, metro station telemetry, and a Flask web application to support predictive crowd management, journey planning, and real-time operational insights.
+---
 
-The platform includes a 100-estimator Random Forest model for passenger demand forecasting, an indexed analytical database for sub-50ms traffic analysis, and an intelligent route-planning engine that navigates transfers and line interchanges.
+## 🌟 Overview
 
-## Core Features
+MetroAI is a web-based intelligent metro management system focused on improving passenger flow management and simplifying metro travel.
+
+The platform uses a Random Forest machine learning model to predict passenger demand, analyzes historical passenger movement patterns, identifies congestion-prone stations, and provides intelligent route recommendations.
+
+It also features Metro-Pilot, an intelligent passenger assistant that helps commuters understand routes, station interchanges, platform directions, and journey details.
+
+---
+
+## ✨ Key Features
 
 ### 1. Operations Dashboard
-- Live overview of metropolitan transit health and active alerts.
-- Live station counter synced with the station master repository.
-- Quick operational metrics and active line status monitoring.
+- Centralized metro operations dashboard.
+- Station and metro line overview.
+- Passenger activity monitoring.
+- Operational statistics and alerts.
 
-### 2. AI Journey Planner & Crowd Prediction
-- Predicts passenger arrivals at 15-minute intervals using a Random Forest regression model.
-- Analyzes weather conditions, holiday schedules, and special urban events.
-- Evaluates crowd utilization based on station capacity thresholds (Low, Moderate, High, Very High).
-- Calculates model variance across trees to output a statistical confidence percentage.
-- Automatically archives predictions to the Prediction History log.
+### 2. AI Passenger Demand Prediction
+- Random Forest-based passenger demand forecasting.
+- Passenger arrival prediction at 15-minute intervals.
+- Considers weather, holidays, and special events.
+- Station crowd-level classification.
+- Prediction confidence estimation.
 
 ### 3. Passenger Flow & Congestion Analytics
-- **Temporal Ridership Trends:** Interactive line chart tracking volume across Daily, Weekly, and Monthly aggregations.
-- **24-Hour Peak Curve:** Hourly distribution bar chart highlighting commuter rush periods (08:00–10:00 and 17:00–19:00).
-- **Corridor Comparison:** Line-by-line ridership share doughnut chart (Purple, Green, Yellow).
-- **Congestion Ranking:** Top 10 congestion bottlenecks with capacity utilization bars and risk flags.
-- **Geospatial Density Heatmap:** Interactive Leaflet GIS map displaying 85+ stations scaled and colored by passenger density.
-- **AI-Generated Insights:** Automated operational recommendations for train dispatch scheduling.
-- Powered by an indexed SQLite caching engine (`data/analytics.db`) querying 5.9M+ records in under 30 milliseconds.
+- Daily, weekly, and monthly passenger trends.
+- 24-hour passenger activity analysis.
+- Metro corridor comparison.
+- Top congestion-prone station identification.
+- Interactive geospatial passenger density heatmap.
+- AI-generated operational insights.
 
-### 4. Prediction History & Archive
-- Persistent database of all AI-generated journey predictions (`data/metro_history.db`).
-- Searchable by station, corridor, or destination.
-- Filterable by metro line, crowd risk level, and sort order.
-- In-depth diagnostics modal breaking down environmental factors and capacity utilization.
-- One-click CSV export of historical prediction data.
-- Direct "Re-Plan" integration returning to the Journey Planner.
+### 4. Prediction History
+- Persistent prediction history.
+- Search and filter historical predictions.
+- Station-wise prediction analysis.
+- Detailed prediction diagnostics.
+- Historical data export.
 
-### 5. Metro Travel Assistant & Routing Engine
-- Multi-line graph-based shortest path routing with interchange identification.
-- Step-by-step travel instructions and line transfer notifications.
-- Station platform and transfer floor guidance (Concourse vs Ground level) from the interchange knowledge base.
+### 5. Metro-Pilot: Intelligent Passenger Assistant
+- Intelligent metro travel assistance.
+- Step-by-step journey guidance.
+- Metro line interchange explanations.
+- Station and platform direction assistance.
+- Route and travel information.
 
-### 6. Geospatial Metro Network Explorer
-- Interactive Leaflet/OpenStreetMap network map.
-- Complete station directory covering Purple, Green, and Yellow lines.
-- Filter by corridor, station type, and operational status.
+### 6. Intelligent Route Planning
+- Graph-based shortest-path calculation.
+- Multi-line metro route planning.
+- Interchange identification.
+- Transfer-aware route recommendations.
 
-### 7. About Platform Page
-- Comprehensive architectural documentation.
-- Machine learning model specifications and training methodology.
-- Bangalore Namma Metro network alignment breakdown.
-- Application module index and diagnostics.
+### 7. Geospatial Metro Network Explorer
+- Interactive metro network map.
+- Purple, Green, and Yellow line coverage.
+- Station locations and geographical information.
+- Station directory and filtering.
 
-## Technology Stack
+---
 
-- **Frontend:** HTML5, CSS3 Grid, Vanilla JavaScript (ES6+), Chart.js, Leaflet.js GIS, Font Awesome 6
-- **Backend:** Python 3.12, Flask, Flask-CORS
-- **Machine Learning:** scikit-learn (RandomForestRegressor), Joblib, NumPy
-- **Data & Storage:** SQLite3 (indexed pre-aggregated analytics & prediction history), pandas
-- **Routing Engine:** Python graph traversal with interchange penalty minimization
+## 🛠️ Technology Stack
 
-## Project Structure
+| Category | Technologies |
+|---|---|
+| Frontend | HTML5, CSS3, JavaScript |
+| Backend | Python, Flask |
+| Machine Learning | Scikit-learn, Random Forest |
+| Data Processing | Pandas, NumPy |
+| Database | SQLite |
+| Data Visualization | Chart.js |
+| Geospatial Mapping | Leaflet.js, OpenStreetMap |
+| Routing Algorithm | Graph-based Shortest Path |
+| Development Tools | VS Code, Git, GitHub |
+
+---
+
+## 🏗️ System Architecture
+
+MetroAI follows a modular architecture consisting of:
+
+1. **Presentation Layer:** Interactive web dashboard and passenger interfaces.
+2. **Application Layer:** Flask backend handling application routes and API requests.
+3. **Machine Learning Layer:** Random Forest model for passenger demand prediction.
+4. **Analytics Layer:** Passenger flow analysis, congestion detection, and operational insights.
+5. **Routing Layer:** Graph-based metro route calculation and interchange guidance.
+6. **Data Layer:** CSV datasets and SQLite-based data storage.
+
+---
+
+## 📂 Project Structure
 
 ```text
 MetroAI/
-├── app.py                      # Flask backend entrypoint & RESTful API routes
-├── analytics_service.py        # High-performance analytics query engine
-├── history_service.py          # Prediction history persistence & management
-├── route_engine.py             # Transit pathfinding & interchange navigator
-├── train_model.py              # Random Forest model training pipeline
-├── predict.py                  # CLI prediction utility
-├── requirements.txt            # Python dependencies
+│
+├── app.py
+├── analytics_service.py
+├── history_service.py
+├── route_engine.py
+│
 ├── data/
-│   ├── analytics.db            # Pre-aggregated high-speed analytical SQLite database
-│   ├── metro_history.db        # Persistent prediction history database
-│   ├── station_master.csv      # 85+ station metadata, coordinates, and capacities
-│   ├── interchange_details.csv # Line-change floors and platform guidance
-│   ├── special_events.csv      # Event dates, venues, and transit impact factors
-│   ├── passenger_flow.csv      # 5.96M record passenger arrival training data
-│   └── weather.csv             # Meteorological records
+│   ├── station_master.csv
+│   ├── interchange_details.csv
+│   ├── holidays.csv
+│   ├── special_events.csv
+│   └── weather.csv
+│
 ├── models/
-│   ├── model.pkl               # Trained Random Forest Regressor
-│   └── label_encoders.pkl      # Categorical feature encoders
+│   └── Model files (generated or supplied separately)
+│
 ├── templates/
-│   ├── dashboard.html          # Operations Control Center
-│   ├── planner.html            # AI Journey Planner
-│   ├── stations.html           # Stations Database & Directory
-│   ├── network.html            # Interactive GIS Metro Network
-│   ├── assistant.html          # Step-by-step Travel Assistant
-│   ├── analytics.html          # Passenger Analytics & Congestion Heatmap
-│   ├── prediction.html         # Prediction History & Forecast Archive
-│   └── about.html              # System Architecture & Technical Specifications
-└── static/
-    ├── css/                    # Custom dark-theme responsive stylesheets
-    ├── js/                     # Client-side controllers and chart/map handlers
-    └── assets/                 # Brand assets and logos
+│   ├── dashboard.html
+│   ├── planner.html
+│   ├── analytics.html
+│   ├── assistant.html
+│   ├── prediction.html
+│   └── about.html
+│
+├── static/
+│   ├── css/
+│   ├── js/
+│   └── assets/
+│
+├── requirements.txt
+├── README.md
+└── .gitignore
 ```
 
-## Running the Application
+---
 
-1. **Activate Environment & Install Dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
+## 🚀 Installation & Setup
 
-2. **Start the Flask Server:**
-   ```bash
-   python app.py
-   ```
+### Prerequisites
 
-3. **Open in Browser:**
-   Navigate to [http://127.0.0.1:5008](http://127.0.0.1:5008) in your web browser.
+- Python 3.10 or later
+- pip
+- Git
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/prajayganiga-design/MetroAI.git
+```
+
+### 2. Navigate to the Project Directory
+
+```bash
+cd MetroAI
+```
+
+### 3. Create a Virtual Environment
+
+```bash
+python -m venv venv
+```
+
+### 4. Activate the Virtual Environment
+
+**Windows PowerShell:**
+
+```powershell
+.\venv\Scripts\Activate.ps1
+```
+
+### 5. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 6. Run the Application
+
+```bash
+python app.py
+```
+
+### 7. Open in Browser
+
+```text
+http://127.0.0.1:5008
+```
+
+---
+
+## 📊 Dataset Information
+
+MetroAI uses structured datasets containing:
+
+- Metro station information.
+- Passenger arrival records.
+- Weather information.
+- Holiday schedules.
+- Special event information.
+- Metro interchange details.
+
+**Note:** Large passenger-flow datasets and generated model/database files are not included in the repository. They must be supplied or generated separately where required by the corresponding application modules.
+
+---
+
+## 🔮 Future Enhancements
+
+- Integration with real-time metro passenger data.
+- Improved demand forecasting using additional historical data.
+- Enhanced passenger navigation and accessibility features.
+- Live metro service status integration.
+- Advanced congestion monitoring and alert mechanisms.
+
+---
+
+## 👨‍💻 Developer
+
+**Prajay Chandrashekhar Ganiga**
+
+Information Science & Engineering  
+KLS Gogte Institute of Technology, Belagavi
+
+GitHub: [prajayganiga-design](https://github.com/prajayganiga-design)
+
+---
+
+⭐ If you find this project interesting, consider giving the repository a star!
