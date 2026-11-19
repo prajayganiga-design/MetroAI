@@ -4,6 +4,7 @@ __pycache__/
 
 # Virtual Environment
 venv/
+.venv/
 .env
 
 # VS Code
@@ -14,6 +15,10 @@ venv/
 
 # Jupyter
 .ipynb_checkpoints/
+
 # Large generated files
 models/model.pkl
 data/passenger_flow.csv
+
+# Database files
+data/*.db

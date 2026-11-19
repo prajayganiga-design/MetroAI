@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MetroAI | Passenger Analytics</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/analytics.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="MetroAI Logo">
+
+            <div class="logo-text">
+                <h2>MetroAI</h2>
+                <p>Operations Center</p>
+            </div>
+        </div>
+
+        <ul>
+            <li onclick="window.location.href='/dashboard'">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+            </li>
+
+            <li onclick="window.location.href='/planner'">
+                <i class="fa-solid fa-brain"></i>
+                AI Journey Planner
+            </li>
+
+            <li onclick="window.location.href='/stations'">
+                <i class="fa-solid fa-train-subway"></i>
+                Stations
+            </li>
+
+            <li onclick="window.location.href='/network'">
+                <i class="fa-solid fa-map-location-dot"></i>
+                Metro Network
+            </li>
+
+            <li onclick="window.location.href='/assistant'">
+                <i class="fa-solid fa-robot"></i>
+                Travel Assistant
+            </li>
+
+            <li class="active" onclick="window.location.href='/analytics'">
+                <i class="fa-solid fa-chart-line"></i>
+                Analytics
+            </li>
+
+            <li onclick="window.location.href='/prediction'">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                Prediction History
+            </li>
+
+            <li onclick="window.location.href='/about'">
+                <i class="fa-solid fa-circle-info"></i>
+                About
+            </li>
+        </ul>
+
+        <div class="version">Version 1.0</div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- HEADER -->
+        <header class="analytics-header">
+
+            <div>
+                <h1>Passenger Analytics & Network Intelligence</h1>
+                <p>Explore passenger movement, temporal demand trends, and congestion dynamics across metro corridors.</p>
+            </div>
+
+            <div class="analytics-header-status">
+                <span class="analytics-status-dot"></span>
+                <span>Live Analytics Engine</span>
+            </div>
+
+        </header>
+
+        <!-- KPI SUMMARY CARDS -->
+        <section class="analytics-kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-icon icon-purple"><i class="fa-solid fa-users"></i></div>
+                <div class="kpi-info">
+                    <span class="kpi-label">Analyzed Ridership</span>
+                    <h3 id="kpiTotalPax">--</h3>
+                    <small class="kpi-sub">Total passengers in period</small>
+                </div>
+            </div>
+
+            <div class="kpi-card">
+                <div class="kpi-icon icon-amber"><i class="fa-solid fa-clock"></i></div>
+                <div class="kpi-info">
+                    <span class="kpi-label">Peak Congestion Hour</span>
+                    <h3 id="kpiPeakHour">--</h3>
+                    <small class="kpi-sub">Highest system load</small>
+                </div>
+            </div>
+
+            <div class="kpi-card">
+                <div class="kpi-icon icon-red"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                <div class="kpi-info">
+                    <span class="kpi-label">Highest Density Hub</span>
+                    <h3 id="kpiTopStation">--</h3>
+                    <small class="kpi-sub">Major bottleneck corridor</small>
+                </div>
+            </div>
+
+            <div class="kpi-card">
+                <div class="kpi-icon icon-emerald"><i class="fa-solid fa-train-subway"></i></div>
+                <div class="kpi-info">
+                    <span class="kpi-label">Monitored Stations</span>
+                    <h3 id="kpiStationCount">85</h3>
+                    <small class="kpi-sub">Purple, Green & Yellow lines</small>
+                </div>
+            </div>
+        </section>
+
+        <!-- FILTERS -->
+        <section class="analytics-filters">
+
+            <div class="filter-heading">
+                <i class="fa-solid fa-sliders"></i>
+                <span>Analysis Filters</span>
+            </div>
+
+            <div class="filter-controls">
+
+                <div class="filter-group">
+                    <label for="dateRange">Aggregation Granularity</label>
+                    <select id="dateRange">
+                        <option value="daily">Daily Trend (Recent)</option>
+                        <option value="weekly">Weekly Rollup</option>
+                        <option value="monthly" selected>Monthly Overview</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="lineFilter">Metro Corridor</label>
+                    <select id="lineFilter">
+                        <option value="all">All Lines (Network-wide)</option>
+                        <option value="Purple">Purple Line</option>
+                        <option value="Green">Green Line</option>
+                        <option value="Yellow">Yellow Line</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="stationFilter">Target Station</label>
+                    <select id="stationFilter">
+                        <option value="all">All Stations</option>
+                    </select>
+                </div>
+
+                <button id="applyFilters" class="apply-filter-btn">
+                    <i class="fa-solid fa-filter"></i>
+                    Apply Filters
+                </button>
+
+                <button id="resetFilters" class="reset-filter-btn" title="Reset all filters">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    Reset
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ANALYTICS CONTENT -->
+        <section class="analytics-section">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Corridor Dynamics & Forecast Signals</h2>
+                    <p>Machine learning-derived aggregations based on metro sensor logs and passenger flow models.</p>
+                </div>
+                <div id="loadingIndicator" class="loading-badge" style="display: none;">
+                    <i class="fa-solid fa-spinner fa-spin"></i> Refreshing Analytics...
+                </div>
+            </div>
+
+
+            <!-- TRAFFIC TRENDS -->
+            <div class="analytics-panel traffic-panel">
+
+                <div class="panel-heading">
+                    <div>
+                        <h3>Passenger Traffic Trends</h3>
+                        <p id="trafficSubtitle">Volume trends across selected temporal intervals</p>
+                    </div>
+
+                    <span class="panel-icon">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </span>
+                </div>
+
+                <div class="chart-wrapper">
+                    <canvas id="trafficCanvas"></canvas>
+                </div>
+
+            </div>
+
+
+            <!-- PEAK HOURS AND LINE COMPARISON -->
+            <div class="analytics-grid">
+
+                <div class="analytics-panel">
+
+                    <div class="panel-heading">
+                        <div>
+                            <h3>Hourly Demand Distribution (24 Hours)</h3>
+                            <p>Identify morning rush, mid-day lull, and evening peak surges</p>
+                        </div>
+
+                        <span class="panel-icon">
+                            <i class="fa-solid fa-clock"></i>
+                        </span>
+                    </div>
+
+                    <div class="chart-wrapper">
+                        <canvas id="peakHourCanvas"></canvas>
+                    </div>
+
+                </div>
+
+
+                <div class="analytics-panel">
+
+                    <div class="panel-heading">
+                        <div>
+                            <h3>Line Passenger Share</h3>
+                            <p>Proportion of network volume carried by each metro line</p>
+                        </div>
+
+                        <span class="panel-icon">
+                            <i class="fa-solid fa-chart-pie"></i>
+                        </span>
+                    </div>
+
+                    <div class="chart-wrapper pie-wrapper">
+                        <canvas id="lineComparisonCanvas"></canvas>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONGESTION ANALYSIS -->
+            <div class="analytics-panel">
+
+                <div class="panel-heading">
+                    <div>
+                        <h3>Congestion Hotspot Ranking (Top 10 Stations)</h3>
+                        <p>High-demand nodes ranked by passenger load and station utilization</p>
+                    </div>
+
+                    <span class="panel-icon icon-warn">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </span>
+                </div>
+
+                <div id="congestionAnalysis" class="congestion-container">
+                    <div class="loading-state">
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+                        <p>Loading congestion metrics...</p>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- PASSENGER HEATMAP -->
+            <div class="analytics-panel">
+
+                <div class="panel-heading">
+                    <div>
+                        <h3>Geospatial Passenger Density Map</h3>
+                        <p>Interactive station map scaled by passenger demand (glowing circles represent relative crowd level)</p>
+                    </div>
+
+                    <span class="panel-icon icon-map">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                    </span>
+                </div>
+
+                <div class="map-container-box">
+                    <div id="heatmapMap"></div>
+                    <div class="map-legend">
+                        <div class="legend-item"><span class="legend-color high"></span> High Demand</div>
+                        <div class="legend-item"><span class="legend-color moderate"></span> Moderate Demand</div>
+                        <div class="legend-item"><span class="legend-color low"></span> Light Flow</div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- AI INSIGHTS -->
+            <div class="analytics-panel insights-panel">
+
+                <div class="panel-heading">
+                    <div>
+                        <h3>AI-Generated Operational Insights</h3>
+                        <p>Automated intelligence extracted from multi-year passenger arrival patterns</p>
+                    </div>
+
+                    <span class="panel-icon ai-icon">
+                        <i class="fa-solid fa-brain"></i>
+                    </span>
+                </div>
+
+                <div id="aiInsights" class="insights-container">
+                    <div class="loading-state">
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+                        <p>Generating AI insights...</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <footer class="analytics-footer">
+            MetroAI Operations Center · Intelligent Passenger Analytics Module · Version 1.0
+        </footer>
+
+    </main>
+
+    <script src="{{ url_for('static', filename='js/analytics.js') }}"></script>
+
+</body>
+</html>

@@ -1,291 +1,384 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>MetroFlow AI | Travel Assistant</title>
+    <title>MetroAI | Intelligent Travel Assistant</title>
 
-    <link
-        rel="stylesheet"
-        href="{{ url_for('static', filename='css/assistant.css') }}"
-    >
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
-    <script
-        src="{{ url_for('static', filename='js/assistant.js') }}"
-        defer
-    ></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/assistant.css') }}" />
 </head>
 
 <body>
+    <div class="assistant-page">
+        <!-- ================= Sidebar ================= -->
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="MetroAI Logo" />
+                <div class="logo-text">
+                    <h2>MetroAI</h2>
+                    <p>Operations Center</p>
+                </div>
+            </div>
 
-    <div class="app-container">
+            <ul>
+                <li onclick="window.location.href='/dashboard'">
+                    <i class="fa-solid fa-house"></i>
+                    Dashboard
+                </li>
 
-        <!-- Header -->
-        <header class="topbar">
-            <a href="/dashboard" class="brand">
-                <div class="brand-icon">M</div>
+                <li onclick="window.location.href='/planner'">
+                    <i class="fa-solid fa-brain"></i>
+                    AI Journey Planner
+                </li>
 
+                <li onclick="window.location.href='/stations'">
+                    <i class="fa-solid fa-train-subway"></i>
+                    Stations
+                </li>
+
+                <li onclick="window.location.href='/network'">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    Metro Network
+                </li>
+
+                <li class="active" onclick="window.location.href='/assistant'">
+                    <i class="fa-solid fa-robot"></i>
+                    Travel Assistant
+                </li>
+
+                <li onclick="window.location.href='/analytics'">
+                    <i class="fa-solid fa-chart-line"></i>
+                    Analytics
+                </li>
+
+                <li onclick="window.location.href='/prediction'">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    Prediction History
+                </li>
+
+                <li onclick="window.location.href='/about'">
+                    <i class="fa-solid fa-circle-info"></i>
+                    About
+                </li>
+            </ul>
+
+            <div class="version">Version 1.0</div>
+        </aside>
+
+        <!-- ================= Main Content ================= -->
+        <main class="assistant-main">
+            <!-- Header -->
+            <header class="assistant-header">
                 <div>
-                    <h1>MetroFlow <span>AI</span></h1>
-                    <p>SMART METRO TRAVEL</p>
-                </div>
-            </a>
-
-            <a href="/dashboard" class="back-link">
-                ← Dashboard
-            </a>
-        </header>
-
-
-        <!-- Main Content -->
-        <main class="main-content">
-
-            <section class="hero-section">
-
-                <div class="status-badge">
-                    <span class="status-dot"></span>
-                    INTELLIGENT TRAVEL ASSISTANT
+                    <div class="assistant-badge">
+                        <i class="fa-solid fa-diamond-turn-right"></i>
+                        <span>Smart Transit Navigation</span>
+                    </div>
+                    <h1>MetroAI Travel Assistant</h1>
+                    <p>Graph-based route pathfinding, interchange navigator, and step-by-step platform guidance across the metro network.</p>
                 </div>
 
-                <h2>
-                    Your journey,<br>
-                    <span>made smarter.</span>
-                </h2>
+                <div class="header-status-pill">
+                    <span class="pulse-dot"></span>
+                    <span>Router Online · 85 Stations</span>
+                </div>
+            </header>
 
-                <p>
-                    Find metro routes, discover interchanges,
-                    and get step-by-step travel directions.
-                </p>
-
+            <!-- Quick Preset Corridors -->
+            <section class="assistant-presets">
+                <span class="presets-label"><i class="fa-solid fa-bolt"></i> Popular Routes:</span>
+                <div class="presets-container">
+                    <button type="button" class="preset-btn" data-src="Indiranagar" data-dest="Nadaprabhu Kempegowda Station (Majestic)">
+                        Indiranagar ➔ Majestic
+                    </button>
+                    <button type="button" class="preset-btn" data-src="Whitefield (Kadugodi)" data-dest="MG Road">
+                        Whitefield ➔ MG Road
+                    </button>
+                    <button type="button" class="preset-btn" data-src="Yeshwanthpur" data-dest="Central College">
+                        Yeshwanthpur ➔ Central College
+                    </button>
+                    <button type="button" class="preset-btn" data-src="Rashtreeya Vidyalaya Road" data-dest="Jayadeva Hospital">
+                        RV Road ➔ Jayadeva (Interchange)
+                    </button>
+                    <button type="button" class="preset-btn" data-src="Silk Institute" data-dest="Nadaprabhu Kempegowda Station (Majestic)">
+                        Silk Institute ➔ Majestic
+                    </button>
+                </div>
             </section>
 
-
-            <!-- Route Planner -->
-            <section class="planner-card">
-
-                <div class="card-heading">
-                    <div>
-                        <span class="section-label">PLAN YOUR JOURNEY</span>
-                        <h3>Where do you want to go?</h3>
-                    </div>
-
-                    <div class="route-icon">↗</div>
-                </div>
-
-
-                <form id="routeForm">
-
-                    <div class="station-fields">
-
-                        <div class="station-field">
-                            <label for="sourceStation">
-                                FROM
-                            </label>
-
-                            <div class="input-wrapper">
-                                <span class="station-dot source-dot"></span>
-
-                                    <select id="sourceStation" required>
-                                        <option value="">Loading stations...</option>
-                                    </select>
+            <!-- Main Layout Grid -->
+            <div class="assistant-grid">
+                <!-- ================= Left: Route Search Box ================= -->
+                <section class="assistant-left">
+                    <div class="assistant-card">
+                        <div class="card-title-bar">
+                            <div class="card-title-group">
+                                <div class="card-icon"><i class="fa-solid fa-compass"></i></div>
+                                <div>
+                                    <h2>Plan Your Metro Route</h2>
+                                    <p>Select origin & destination stations</p>
+                                </div>
                             </div>
+                            <button type="button" id="resetRouteBtn" class="btn-icon-subtle" title="Clear inputs">
+                                <i class="fa-solid fa-rotate-left"></i>
+                            </button>
                         </div>
 
+                        <form id="routeForm">
+                            <!-- Visual Route Station Box -->
+                            <div class="route-input-panel">
+                                <div class="route-visual-line">
+                                    <span class="point origin"></span>
+                                    <span class="track"></span>
+                                    <span class="point destination"></span>
+                                </div>
 
-                        <button
-                            type="button"
-                            id="swapStations"
-                            class="swap-button"
-                            title="Swap stations"
-                            aria-label="Swap source and destination"
-                        >
-                            ⇅
-                        </button>
-
-
-                        <div class="station-field">
-                            <label for="destinationStation">
-                                TO
-                            </label>
-
-                            <div class="input-wrapper">
-                                <span class="station-dot destination-dot"></span>
-
-                            <select id="destinationStation" required>
-                                <option value="">Loading stations...</option>
-                            </select>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="form-footer">
-                        <p>
-                            <span class="info-icon">ⓘ</span>
-                            Routes are calculated using your station dataset.
-                        </p>
-
-                        <button
-                            type="submit"
-                            id="findRouteButton"
-                            class="primary-button"
-                        >
-                            <span>Find Route</span>
-                            <span>→</span>
-                        </button>
-                    </div>
-
-                </form>
-
-            </section>
-
-
-            <!-- Status Message -->
-            <div
-                id="statusMessage"
-                class="status-message"
-                role="status"
-                aria-live="polite"
-                hidden
-            ></div>
-
-
-            <!-- Route Results -->
-            <section id="routeResults" hidden>
-
-                <div class="results-heading">
-                    <div>
-                        <span class="section-label">YOUR JOURNEY</span>
-                        <h3>Route Overview</h3>
-                    </div>
-
-                    <span class="live-badge">
-                        ROUTE FOUND
-                    </span>
-                </div>
-
-
-                <!-- Summary Cards -->
-                <div class="summary-grid">
-
-                    <article class="summary-card">
-                        <span class="summary-icon">↔</span>
-                        <p>Station Connections</p>
-                        <h4 id="connectionCount">--</h4>
-                    </article>
-
-                    <article class="summary-card">
-                        <span class="summary-icon">⇄</span>
-                        <p>Line Transfers</p>
-                        <h4 id="transferCount">--</h4>
-                    </article>
-
-                    <article class="summary-card">
-                        <span class="summary-icon">⌖</span>
-                        <p>Approx. Distance</p>
-                        <h4 id="distanceValue">--</h4>
-                    </article>
-
-                </div>
-
-
-                <!-- Lines and Interchanges -->
-                <article class="result-card">
-
-                    <h4>Lines Used</h4>
-
-                    <div id="lineList" class="line-list"></div>
-
-                    <div class="divider"></div>
-
-                    <h4>Interchanges</h4>
-
-                    <div id="interchangeList" class="interchange-list"></div>
-
-                </article>
-
-
-                <!-- Station Route -->
-                <article class="result-card">
-
-                    <h4>Station-by-Station Route</h4>
-
-                    <p class="card-description">
-                        Follow the station sequence shown below.
-                    </p>
-
-                    <div id="stationRoute" class="station-route"></div>
-
-                </article>
-
-
-                <!-- Travel Instructions -->
-                <article class="result-card instructions-card">
-
-                    <div class="instructions-heading">
-                        <div>
-                            <span class="section-label">STEP-BY-STEP GUIDE</span>
-                            <!-- Interchange Guidance -->
-                            <article class="result-card interchange-guidance-card">
-
-                                <div class="instructions-heading">
-                                    <div>
-                                        <span class="section-label">PASSENGER ASSISTANCE</span>
-                                        <h4>Interchange & Platform Guidance</h4>
+                                <div class="route-fields-col">
+                                    <!-- Origin Field -->
+                                    <div class="station-field-wrap">
+                                        <div class="field-label-row">
+                                            <label for="sourceInput">Origin Station</label>
+                                            <span id="srcLineTag" class="line-tag-mini" style="display:none;"></span>
+                                        </div>
+                                        <div class="input-relative">
+                                            <i class="fa-solid fa-location-dot field-icon origin-icon"></i>
+                                            <input type="text" id="sourceInput" placeholder="Select or type starting station..." autocomplete="off" list="stationsDatalist" />
+                                            <button type="button" class="clear-input-btn" id="clearSrcBtn" style="display:none;" title="Clear">&times;</button>
+                                            <button type="button" class="dropdown-toggle-btn" id="toggleSrcDropdownBtn" title="Show all stations">
+                                                <i class="fa-solid fa-chevron-down"></i>
+                                            </button>
+                                        </div>
+                                        <div id="sourceSuggestions" class="suggestions-dropdown"></div>
                                     </div>
 
-                                    <span class="guide-icon">⇄</span>
+                                    <!-- Swap Button -->
+                                    <div class="swap-action-container">
+                                        <button type="button" id="swapStationsBtn" class="swap-button" title="Swap stations">
+                                            <i class="fa-solid fa-arrow-down-up-across-line"></i>
+                                        </button>
+                                    </div>
+
+                                    <!-- Destination Field -->
+                                    <div class="station-field-wrap">
+                                        <div class="field-label-row">
+                                            <label for="destInput">Destination Station</label>
+                                            <span id="destLineTag" class="line-tag-mini" style="display:none;"></span>
+                                        </div>
+                                        <div class="input-relative">
+                                            <i class="fa-solid fa-flag-checkered field-icon dest-icon"></i>
+                                            <input type="text" id="destInput" placeholder="Select or type destination station..." autocomplete="off" list="stationsDatalist" />
+                                            <button type="button" class="clear-input-btn" id="clearDestBtn" style="display:none;" title="Clear">&times;</button>
+                                            <button type="button" class="dropdown-toggle-btn" id="toggleDestDropdownBtn" title="Show all stations">
+                                                <i class="fa-solid fa-chevron-down"></i>
+                                            </button>
+                                        </div>
+                                        <div id="destSuggestions" class="suggestions-dropdown"></div>
+                                    </div>
                                 </div>
+                            </div>
 
-                                <div id="interchangeGuidanceList">
-                                    <p>Select your stations to view interchange guidance.</p>
-                                </div>
+                            <!-- Native datalist fallback for stations -->
+                            <datalist id="stationsDatalist"></datalist>
 
-                            </article>
-                            <h4>Travel Instructions</h4>
-                        </div>
+                            <!-- Status Notification Banner -->
+                            <div id="statusMessage" class="status-banner" style="display: none;"></div>
 
-                        <span class="guide-icon">✦</span>
+                            <!-- Submit Button -->
+                            <button type="submit" id="findRouteButton" class="btn-calculate-route">
+                                <i class="fa-solid fa-route"></i>
+                                <span>Calculate Optimal Route</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </form>
                     </div>
 
-                    <div id="travelInstructions"></div>
+                    <!-- Quick Travel Tips Box -->
+                    <div class="transit-tips-card">
+                        <div class="tips-header">
+                            <i class="fa-solid fa-circle-info"></i>
+                            <span>Metro Navigation Pro-Tips</span>
+                        </div>
+                        <ul class="tips-list">
+                            <li><i class="fa-solid fa-check"></i> <strong>Majestic Interchange:</strong> Connects Purple Line (Level 2) and Green Line (Level 1 underground).</li>
+                            <li><i class="fa-solid fa-check"></i> <strong>Peak Commuter Windows:</strong> Heavy congestion typically occurs between 08:30–10:00 and 17:30–19:30.</li>
+                            <li><i class="fa-solid fa-check"></i> <strong>Platform Direction:</strong> Verify train headsign destination prior to boarding.</li>
+                        </ul>
+                    </div>
+                </section>
 
-                    <p class="distance-note" id="distanceNote"></p>
+                <!-- ================= Right: Route Results & Visual Stepper ================= -->
+                <section class="assistant-right">
+                    <!-- Pre-Calculation Initial State -->
+                    <div id="initialInfo" class="assistant-placeholder-card">
+                        <div class="placeholder-art-pulse">
+                            <div class="pulse-circle c3"></div>
+                            <div class="pulse-circle c2"></div>
+                            <div class="pulse-circle c1"></div>
+                            <div class="pulse-center">
+                                <i class="fa-solid fa-train-subway"></i>
+                            </div>
+                        </div>
 
-                </article>
+                        <h2>Smart Metro Navigation Ready</h2>
+                        <p>Select your starting station and destination to compute the shortest path, transfer guidance, floor levels, and travel sequence.</p>
 
-            </section>
+                        <div class="placeholder-badges-row">
+                            <div class="p-badge"><i class="fa-solid fa-arrows-split-up-and-left"></i> Interchange Platform Maps</div>
+                            <div class="p-badge"><i class="fa-solid fa-stopwatch"></i> Travel Time Estimates</div>
+                            <div class="p-badge"><i class="fa-solid fa-brain"></i> AI Crowd Link</div>
+                        </div>
+                    </div>
 
+                    <!-- Route Results Container -->
+                    <div id="routeResults" class="route-results-container" style="display: none;">
+                        <!-- Route Hero Overview Banner -->
+                        <div class="route-hero-card">
+                            <div class="hero-header-row">
+                                <div>
+                                    <span class="hero-eyebrow">COMPUTED TRANSIT ITINERARY</span>
+                                    <div class="hero-stations-flow">
+                                        <h2 id="heroSource">--</h2>
+                                        <i class="fa-solid fa-arrow-right-long arrow-corridor"></i>
+                                        <h2 id="heroDest">--</h2>
+                                    </div>
+                                </div>
+                                <div id="transferSummaryBadge" class="hero-transfer-pill">Direct Line</div>
+                            </div>
 
-            <!-- Initial Information -->
-            <section id="initialInfo" class="initial-info">
+                            <!-- 4 Key Telemetry Cards -->
+                            <div class="telemetry-grid">
+                                <div class="telemetry-card">
+                                    <div class="telemetry-icon purple"><i class="fa-solid fa-train-subway"></i></div>
+                                    <div class="telemetry-data">
+                                        <span class="lbl">Station Stops</span>
+                                        <h3 id="connectionCount">--</h3>
+                                        <small>Sequential nodes</small>
+                                    </div>
+                                </div>
 
-                <div class="initial-icon">✧</div>
+                                <div class="telemetry-card">
+                                    <div class="telemetry-icon amber"><i class="fa-solid fa-arrows-split-up-and-left"></i></div>
+                                    <div class="telemetry-data">
+                                        <span class="lbl">Line Transfers</span>
+                                        <h3 id="transferCount">--</h3>
+                                        <small id="transferDetailSub">No transfer required</small>
+                                    </div>
+                                </div>
 
-                <h3>Ready for your next journey?</h3>
+                                <div class="telemetry-card">
+                                    <div class="telemetry-icon cyan"><i class="fa-solid fa-ruler-combined"></i></div>
+                                    <div class="telemetry-data">
+                                        <span class="lbl">Approx. Distance</span>
+                                        <h3 id="distanceValue">--</h3>
+                                        <small>Track distance</small>
+                                    </div>
+                                </div>
 
-                <p>
-                    Enter your starting station and destination above
-                    to discover your route.
-                </p>
+                                <div class="telemetry-card">
+                                    <div class="telemetry-icon emerald"><i class="fa-solid fa-clock"></i></div>
+                                    <div class="telemetry-data">
+                                        <span class="lbl">Estimated Travel</span>
+                                        <h3 id="estimatedDuration">--</h3>
+                                        <small>Normal dwell time</small>
+                                    </div>
+                                </div>
+                            </div>
 
-            </section>
+                            <!-- Corridors Used Chips -->
+                            <div class="lines-utilized-row">
+                                <span class="utilized-label">Corridors Used:</span>
+                                <div id="lineList" class="lines-chips-list"></div>
+                            </div>
+                        </div>
 
+                        <!-- Interchange & Platform Guidance (Prominent Callout) -->
+                        <div id="interchangeGuidanceSection" class="result-section-card interchange-panel" style="display:none;">
+                            <div class="section-card-title">
+                                <div class="title-with-icon">
+                                    <i class="fa-solid fa-person-walking-luggage icon-amber"></i>
+                                    <div>
+                                        <h3>Interchange & Platform Guidance</h3>
+                                        <p>Floor levels, connecting lines, and directional instructions</p>
+                                    </div>
+                                </div>
+                                <span class="badge-interchange">Station Transfer</span>
+                            </div>
+
+                            <div id="interchangeGuidanceList" class="interchange-cards-container">
+                                <!-- Populated dynamically by JS -->
+                            </div>
+                        </div>
+
+                        <!-- Station-by-Station Interactive Visual Route -->
+                        <div class="result-section-card">
+                            <div class="section-card-title">
+                                <div class="title-with-icon">
+                                    <i class="fa-solid fa-signs-post icon-purple"></i>
+                                    <div>
+                                        <h3>Station-by-Station Journey Sequence</h3>
+                                        <p>Visual track of every station along your route</p>
+                                    </div>
+                                </div>
+                                <div class="route-tools">
+                                    <button type="button" id="toggleAllStationsBtn" class="btn-tool">
+                                        <i class="fa-solid fa-list-ol"></i> Show All Stops
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div id="stationRoute" class="tube-stepper-track">
+                                <!-- Populated dynamically by JS -->
+                            </div>
+                        </div>
+
+                        <!-- Step-by-Step Travel Directions -->
+                        <div class="result-section-card">
+                            <div class="section-card-title">
+                                <div class="title-with-icon">
+                                    <i class="fa-solid fa-clipboard-list icon-cyan"></i>
+                                    <div>
+                                        <h3>Step-by-Step Passenger Directions</h3>
+                                        <p>Follow instructions for ticketing, boarding, and line changes</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="travelInstructions" class="instructions-steps-list">
+                                <!-- Populated dynamically by JS -->
+                            </div>
+
+                            <div class="distance-disclaimer" id="distanceNote"></div>
+                        </div>
+
+                        <!-- Quick Action Integration Bar -->
+                        <div class="result-actions-strip">
+                            <button type="button" id="predictCrowdForRouteBtn" class="btn-action-primary">
+                                <i class="fa-solid fa-brain"></i> Check AI Crowd Forecast for this Journey
+                            </button>
+                            <button type="button" id="reverseRouteBtn" class="btn-action-secondary">
+                                <i class="fa-solid fa-rotate"></i> Reverse Journey
+                            </button>
+                            <button type="button" id="copyDirectionsBtn" class="btn-action-secondary">
+                                <i class="fa-solid fa-copy"></i> Copy Directions
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </main>
-
-
-        <!-- Footer -->
-        <footer class="footer">
-            <p>
-                MetroFlow AI &copy; 2026
-                <span>•</span>
-                Intelligent Metro Travel Assistance
-            </p>
-        </footer>
-
     </div>
 
+    <!-- Script -->
+    <script src="{{ url_for('static', filename='js/assistant.js') }}"></script>
 </body>
 </html>

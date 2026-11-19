@@ -1,0 +1,20 @@
+holiday_id,date,holiday_name,holiday_type,is_holiday,expected_passenger_impact
+H000,NA,None,None,No,Normal Day
+H001,2026-01-01,New Year's Day,Observance,Yes,Moderate
+H002,2026-01-14,Makara Sankranti,Festival,Yes,High
+H003,2026-01-26,Republic Day,National,Yes,Medium
+H004,2026-02-15,Maha Shivaratri,Festival,Yes,High
+H005,2026-03-04,Holi,Festival,Yes,Medium
+H006,2026-03-20,Ugadi,State Festival,Yes,High
+H007,2026-04-03,Good Friday,Religious,Yes,Medium
+H008,2026-04-14,Dr. B.R. Ambedkar Jayanti,National,Yes,Medium
+H009,2026-05-01,Labour Day,National,Yes,Medium
+H010,2026-05-28,Bakrid (Eid al-Adha),Religious,Yes,High
+H011,2026-08-15,Independence Day,National,Yes,Very High
+H012,2026-08-28,Varamahalakshmi Festival,State Festival,Yes,High
+H013,2026-09-17,Ganesh Chaturthi,Festival,Yes,Very High
+H014,2026-10-02,Gandhi Jayanti,National,Yes,Medium
+H015,2026-10-20,Ayudha Puja,State Festival,Yes,Very High
+H016,2026-10-21,Vijayadashami (Dasara),State Festival,Yes,Very High
+H017,2026-11-08,Deepavali,Festival,Yes,Very High
+H018,2026-12-25,Christmas,National,Yes,High

@@ -1,404 +1,509 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>MetroAI | AI Journey Planner</title>
+    <title>MetroAI | AI Journey Planner & Crowd Forecast</title>
 
     <!-- Google Font -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
     <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
 
-    <!-- Global Styles -->
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/style.css') }}"
-    />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/sidebar.css') }}"
-    />
+    <!-- Global & Planner Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/planner.css') }}" />
+</head>
 
-    <!-- Planner Styles -->
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/planner.css') }}"
-    />
-  </head>
-
-  <body>
+<body>
     <div class="planner-page">
-      <!-- ================= Sidebar ================= -->
-
-      <aside class="sidebar">
-        <div class="logo">
-          <img
-            src="{{ url_for('static', filename='assets/logo.png') }}"
-            alt="MetroAI"
-          />
-
-          <div class="logo-text">
-            <h2>MetroAI</h2>
-
-            <p>Operations Center</p>
-          </div>
-        </div>
-
-        <ul>
-          <!-- Dashboard -->
-          <li onclick="window.location.href = '/dashboard'">
-            <i class="fa-solid fa-house"></i>
-            Dashboard
-          </li>
-
-          <!-- AI Journey Planner -->
-          <li class="active">
-            <i class="fa-solid fa-brain"></i>
-            AI Journey Planner
-          </li>
-
-          <!-- Stations -->
-          <li onclick="window.location.href = '/stations'">
-            <i class="fa-solid fa-train-subway"></i>
-            Stations
-          </li>
-
-          <!-- Metro Network -->
-          <li onclick="window.location.href = '/network'">
-            <i class="fa-solid fa-map-location-dot"></i>
-            Metro Network
-          </li>
-
-          <!-- Travel Assistant -->
-          <li onclick="window.location.href = '/assistant'">
-            <i class="fa-solid fa-robot"></i>
-            Travel Assistant
-          </li>
-
-          <!-- Analytics -->
-          <li onclick="window.location.href = '/analytics'">
-            <i class="fa-solid fa-chart-line"></i>
-            Analytics
-          </li>
-
-          <!-- Prediction History -->
-          <li onclick="window.location.href = '/prediction'">
-            <i class="fa-solid fa-clock-rotate-left"></i>
-            Prediction History
-          </li>
-
-          <!-- About -->
-          <li onclick="window.location.href = '/about'">
-            <i class="fa-solid fa-circle-info"></i>
-            About
-          </li>
-        </ul>
-        <div class="version">Version 1.0</div>
-      </aside>
-
-      <!-- ================= Main Content ================= -->
-
-      <main class="planner-main">
-        <!-- Header -->
-
-        <header class="planner-header">
-          <div>
-            <h1>AI Journey Planner</h1>
-
-            <p>
-              Predict passenger demand and optimize your metro journey using
-              AI-powered passenger flow analysis.
-            </p>
-          </div>
-        </header>
-
-        <!-- Main Grid -->
-
-        <div class="planner-grid">
-          <!-- ================= Left Panel ================= -->
-
-          <section class="planner-left">
-            <div class="planner-card">
-              <div class="card-header">
-                <div class="card-icon">
-                  <i class="fa-solid fa-route"></i>
+        <!-- ================= Sidebar ================= -->
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="MetroAI Logo" />
+                <div class="logo-text">
+                    <h2>MetroAI</h2>
+                    <p>Operations Center</p>
                 </div>
-
-                <div>
-                  <h2>Journey Planner</h2>
-
-                  <p>Enter your travel details to predict passenger demand.</p>
-                </div>
-              </div>
-
-              <!-- ================= Journey Form ================= -->
-
-              <form id="journeyForm">
-                <!-- Source Station -->
-
-                <div class="input-group">
-                  <label>
-                    <i class="fa-solid fa-location-dot"></i>
-
-                    Source Station
-                  </label>
-
-                  <input
-                    type="text"
-                    id="sourceSearch"
-                    placeholder="Search source station..."
-                    autocomplete="off"
-                  />
-
-                  <div id="sourceSuggestions" class="suggestions"></div>
-                </div>
-
-                <!-- Destination -->
-
-                <div class="input-group">
-                  <label>
-                    <i class="fa-solid fa-location-dot"></i>
-
-                    Destination Station
-                  </label>
-
-                  <input
-                    type="text"
-                    id="destinationSearch"
-                    placeholder="Search destination station..."
-                    autocomplete="off"
-                  />
-
-                  <div id="destinationSuggestions" class="suggestions"></div>
-                </div>
-
-                <!-- Date -->
-
-                <div class="input-group">
-                  <label>
-                    <i class="fa-solid fa-calendar-days"></i>
-
-                    Travel Date
-                  </label>
-
-                  <input type="date" id="travelDate" />
-                </div>
-
-                <!-- Time -->
-
-                <div class="input-group">
-                  <label>
-                    <i class="fa-solid fa-clock"></i>
-
-                    Departure Time
-                  </label>
-
-                  <input type="time" id="travelTime" />
-                </div>
-                <!-- Weather -->
-
-                <!-- ================= Weather ================= -->
-
-                <div class="input-group">
-                  <label>
-                    <i class="fa-solid fa-cloud-sun"></i>
-
-                    Weather
-                  </label>
-
-                  <input
-                    type="text"
-                    id="weatherSearch"
-                    placeholder="Select weather..."
-                    autocomplete="off"
-                    readonly
-                  />
-
-                  <div id="weatherSuggestions" class="suggestions"></div>
-                </div>
-
-                <!-- ================= Holiday ================= -->
-
-                <div class="input-group">
-                  <label>
-                    <i class="fa-solid fa-calendar-check"></i>
-
-                    Holiday
-                  </label>
-
-                  <input
-                    type="text"
-                    id="holidaySearch"
-                    placeholder="Select holiday..."
-                    autocomplete="off"
-                    readonly
-                  />
-
-                  <div id="holidaySuggestions" class="suggestions"></div>
-                </div>
-
-                <!-- Special Event -->
-
-                <div class="input-group">
-                  <label>
-                    <i class="fa-solid fa-star"></i>
-
-                    Special Event
-                  </label>
-
-                  <input
-                    type="text"
-                    id="eventSearch"
-                    placeholder="Search special event..."
-                    autocomplete="off"
-                  />
-
-                  <div id="eventSuggestions" class="suggestions"></div>
-                </div>
-
-                <!-- Predict Button -->
-
-                <button id="predictBtn" type="submit">
-                  <i class="fa-solid fa-brain"></i>
-
-                  Predict Passenger Flow
-                </button>
-              </form>
-            </div>
-          </section>
-          <!-- ================= Right Panel ================= -->
-
-          <section class="planner-right">
-            <!-- ================= Placeholder ================= -->
-
-            <div id="placeholderCard" class="placeholder-card">
-              <div class="placeholder-icon">
-                <i class="fa-solid fa-chart-line"></i>
-              </div>
-
-              <h2>No Prediction Available</h2>
-
-              <p>
-                Fill in your journey details and click
-                <strong>Predict Passenger Flow</strong>
-                to generate AI-powered passenger demand insights.
-              </p>
             </div>
 
-            <!-- ================= Results ================= -->
+            <ul>
+                <li onclick="window.location.href='/dashboard'">
+                    <i class="fa-solid fa-house"></i>
+                    Dashboard
+                </li>
 
-            <div id="resultsContainer" class="results-container">
-              <!-- ================= Prediction Summary ================= -->
+                <li class="active" onclick="window.location.href='/planner'">
+                    <i class="fa-solid fa-brain"></i>
+                    AI Journey Planner
+                </li>
 
-              <div class="dashboard-card">
-                <div class="card-title">
-                  <i class="fa-solid fa-brain"></i>
+                <li onclick="window.location.href='/stations'">
+                    <i class="fa-solid fa-train-subway"></i>
+                    Stations
+                </li>
 
-                  <h2>Prediction Summary</h2>
-                </div>
+                <li onclick="window.location.href='/network'">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    Metro Network
+                </li>
 
-                <div class="summary-grid">
-                  <div class="summary-item">
-                    <span>Crowd Level</span>
-                    <h3 id="crowdLevel">--</h3>
-                  </div>
+                <li onclick="window.location.href='/assistant'">
+                    <i class="fa-solid fa-robot"></i>
+                    Travel Assistant
+                </li>
 
-                  <div class="summary-item">
-                    <span>Expected Passengers</span>
-                    <h3 id="passengerCount">--</h3>
-                  </div>
+                <li onclick="window.location.href='/analytics'">
+                    <i class="fa-solid fa-chart-line"></i>
+                    Analytics
+                </li>
 
-                  <div class="summary-item">
-                    <span>Metro Line</span>
-                    <h3 id="metroLine">--</h3>
-                  </div>
+                <li onclick="window.location.href='/prediction'">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    Prediction History
+                </li>
 
-                  <div class="summary-item">
-                    <span>Recommended Time</span>
-                    <h3 id="recommendedTime">--</h3>
-                  </div>
-
-                  <!-- NEW CARD -->
-
-                  <div class="summary-item">
-                    <span>Confidence</span>
-                    <h3 id="confidence">--%</h3>
-                  </div>
-                </div>
-              </div>
-
-              <!-- ================= Journey Overview ================= -->
-
-              <div class="dashboard-card">
-                <div class="card-title">
-                  <i class="fa-solid fa-route"></i>
-
-                  <h2>Journey Overview</h2>
-                </div>
-
-                <div class="journey-flow">
-                  <div class="station-box">
-                    <span>Source</span>
-
-                    <h3 id="sourceStation">--</h3>
-                  </div>
-
-                  <div class="journey-arrow">
-                    <i class="fa-solid fa-arrow-down"></i>
-                  </div>
-
-                  <div class="line-box">
-                    <span>Metro Line</span>
-
-                    <h3 id="journeyLine">--</h3>
-                  </div>
-
-                  <div class="journey-arrow">
-                    <i class="fa-solid fa-arrow-down"></i>
-                  </div>
-
-                  <div class="station-box">
-                    <span>Destination</span>
-
-                    <h3 id="destinationStation">--</h3>
-                  </div>
-                </div>
-              </div>
-
-              <!-- ================= Travel Recommendation ================= -->
-
-              <div class="dashboard-card">
-                <div class="card-title">
-                  <i class="fa-solid fa-lightbulb"></i>
-
-                  <h2>Travel Recommendation</h2>
-                </div>
-
-                <div class="recommendation">
-                  <div class="recommendation-box">
+                <li onclick="window.location.href='/about'">
                     <i class="fa-solid fa-circle-info"></i>
+                    About
+                </li>
+            </ul>
 
-                    <p id="travelAdvice">
-                      Your AI recommendation will appear here.
-                    </p>
-                  </div>
+            <div class="version">Version 1.0</div>
+        </aside>
+
+        <!-- ================= Main Content ================= -->
+        <main class="planner-main">
+            <!-- Header -->
+            <header class="planner-header">
+                <div>
+                    <div class="planner-badge">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <span>AI Demand Forecast Engine</span>
+                    </div>
+                    <h1>AI Journey Planner</h1>
+                    <p>Simulate passenger demand, anticipate crowd surges, and optimize your metro travel with machine learning.</p>
                 </div>
-              </div>
+
+                <div class="header-shortcuts">
+                    <span class="status-live-dot"></span>
+                    <span class="status-live-text">Model Online · 85 Stations</span>
+                </div>
+            </header>
+
+            <!-- Popular Route Quick-Select Chips -->
+            <section class="quick-presets-section">
+                <span class="presets-label"><i class="fa-solid fa-bolt"></i> Popular Corridors:</span>
+                <div class="presets-container">
+                    <button type="button" class="preset-chip" data-src="Indiranagar" data-dest="Nadaprabhu Kempegowda Station (Majestic)">
+                        Indiranagar ➔ Majestic
+                    </button>
+                    <button type="button" class="preset-chip" data-src="Whitefield (Kadugodi)" data-dest="MG Road">
+                        Whitefield ➔ MG Road
+                    </button>
+                    <button type="button" class="preset-chip" data-src="Yeshwanthpur" data-dest="Central College">
+                        Yeshwanthpur ➔ Central College
+                    </button>
+                    <button type="button" class="preset-chip" data-src="RV Road" data-dest="Jayadeva Hospital">
+                        RV Road ➔ Jayadeva (Interchange)
+                    </button>
+                    <button type="button" class="preset-chip" data-src="Cubbon Park" data-dest="Indiranagar">
+                        Cubbon Park ➔ Indiranagar
+                    </button>
+                </div>
+            </section>
+
+            <!-- Main Layout Grid -->
+            <div class="planner-grid">
+                <!-- ================= Left: Interactive Planner Card ================= -->
+                <section class="planner-left">
+                    <div class="planner-card">
+                        <div class="card-title-bar">
+                            <div class="card-title-group">
+                                <div class="card-icon"><i class="fa-solid fa-route"></i></div>
+                                <div>
+                                    <h2>Configure Journey</h2>
+                                    <p>Select stations and timing to forecast crowd volume</p>
+                                </div>
+                            </div>
+                            <button type="button" id="resetPlannerBtn" class="btn-icon-subtle" title="Reset form">
+                                <i class="fa-solid fa-rotate-left"></i>
+                            </button>
+                        </div>
+
+                        <form id="journeyForm">
+                            <!-- Route Stations (Source & Destination with Swap) -->
+                            <div class="station-route-box">
+                                <div class="route-line-decor">
+                                    <span class="route-point origin"></span>
+                                    <span class="route-connector"></span>
+                                    <span class="route-point destination"></span>
+                                </div>
+
+                                <div class="route-inputs-container">
+                                    <!-- Source Station -->
+                                    <div class="station-input-wrap">
+                                        <div class="input-label-row">
+                                            <label for="sourceSearch">Origin Station</label>
+                                            <span id="sourceLineTag" class="mini-line-tag" style="display:none;"></span>
+                                        </div>
+                                        <div class="input-field-relative">
+                                            <i class="fa-solid fa-location-dot field-icon origin-icon"></i>
+                                            <input type="text" id="sourceSearch" placeholder="Type station name (e.g. Indiranagar)..." autocomplete="off" />
+                                            <button type="button" class="clear-field-btn" id="clearSourceBtn" style="display:none;">&times;</button>
+                                        </div>
+                                        <div id="sourceSuggestions" class="suggestions-dropdown"></div>
+                                    </div>
+
+                                    <!-- Swap Button -->
+                                    <div class="swap-divider">
+                                        <button type="button" id="swapStationsBtn" class="swap-action-btn" title="Swap Origin and Destination">
+                                            <i class="fa-solid fa-arrow-down-up-across-line"></i>
+                                        </button>
+                                    </div>
+
+                                    <!-- Destination Station -->
+                                    <div class="station-input-wrap">
+                                        <div class="input-label-row">
+                                            <label for="destinationSearch">Destination Station</label>
+                                            <span id="destLineTag" class="mini-line-tag" style="display:none;"></span>
+                                        </div>
+                                        <div class="input-field-relative">
+                                            <i class="fa-solid fa-flag-checkered field-icon dest-icon"></i>
+                                            <input type="text" id="destinationSearch" placeholder="Type station name (e.g. Majestic)..." autocomplete="off" />
+                                            <button type="button" class="clear-field-btn" id="clearDestBtn" style="display:none;">&times;</button>
+                                        </div>
+                                        <div id="destinationSuggestions" class="suggestions-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Schedule (Date & Time with Shortcuts) -->
+                            <div class="form-section-title">
+                                <i class="fa-regular fa-clock"></i>
+                                <span>Travel Schedule</span>
+                            </div>
+
+                            <div class="schedule-grid">
+                                <div class="form-field">
+                                    <label for="travelDate">Travel Date <small style="color: var(--text-muted); font-weight: normal;">(Today or future)</small></label>
+                                    <input type="date" id="travelDate" required />
+                                </div>
+
+                                <div class="form-field">
+                                    <div class="time-label-row">
+                                        <label for="travelTime">Departure Time</label>
+                                        <button type="button" id="setNowBtn" class="btn-text-action">
+                                            <i class="fa-solid fa-bolt"></i> Set Now
+                                        </button>
+                                    </div>
+                                    <input type="time" id="travelTime" required />
+                                </div>
+                            </div>
+
+                            <div class="time-quick-chips">
+                                <button type="button" class="time-chip" data-offset="0">Current Time</button>
+                                <button type="button" class="time-chip" data-time="08:30">Morning Peak (08:30)</button>
+                                <button type="button" class="time-chip" data-time="13:00">Noon (13:00)</button>
+                                <button type="button" class="time-chip" data-time="18:30">Evening Rush (18:30)</button>
+                            </div>
+
+                            <!-- Environmental Conditions (Visual Selectors) -->
+                            <div class="form-section-title">
+                                <i class="fa-solid fa-cloud-sun-rain"></i>
+                                <span>Transit Environmental Modifiers</span>
+                            </div>
+
+                            <!-- Weather Pill Selector -->
+                            <div class="form-field">
+                                <label>Weather Factor</label>
+                                <div class="pills-group" id="weatherPillGroup">
+                                    <button type="button" class="selector-pill active" data-val="Sunny">
+                                        ☀️ Sunny
+                                    </button>
+                                    <button type="button" class="selector-pill" data-val="Cloudy">
+                                        ☁️ Cloudy
+                                    </button>
+                                    <button type="button" class="selector-pill" data-val="Rainy">
+                                        🌧️ Rainy
+                                    </button>
+                                </div>
+                                <input type="hidden" id="weatherSearch" value="Sunny" />
+                            </div>
+
+                            <!-- Holiday Switcher -->
+                            <div class="form-field">
+                                <label>Calendar Type</label>
+                                <div class="pills-group" id="holidayPillGroup">
+                                    <button type="button" class="selector-pill active" data-val="No">
+                                        🏢 Normal Weekday / Workday
+                                    </button>
+                                    <button type="button" class="selector-pill" data-val="Yes">
+                                        🎉 Public Holiday / Weekend
+                                    </button>
+                                </div>
+                                <input type="hidden" id="holidaySearch" value="No" />
+                            </div>
+
+                            <!-- Special Events -->
+                            <div class="form-field">
+                                <label for="eventSearch">Special Urban Event (Optional)</label>
+                                <div class="input-field-relative">
+                                    <i class="fa-solid fa-ticket field-icon"></i>
+                                    <input type="text" id="eventSearch" placeholder="Type event name (e.g. IPL Match, Flower Show)..." autocomplete="off" />
+                                </div>
+                                <div id="eventSuggestions" class="suggestions-dropdown"></div>
+
+                                <div class="event-quick-tags">
+                                    <span class="quick-tag" data-event="No Event">No Event</span>
+                                    <span class="quick-tag" data-event="IPL Match">IPL Match</span>
+                                    <span class="quick-tag" data-event="Bengaluru Tech Summit">Tech Summit</span>
+                                    <span class="quick-tag" data-event="Lalbagh Flower Show">Flower Show</span>
+                                </div>
+                            </div>
+
+                            <!-- Submit Action Button -->
+                            <button id="predictBtn" type="submit" class="btn-predict-gradient">
+                                <i class="fa-solid fa-brain"></i>
+                                <span>Predict Passenger Demand & Route</span>
+                            </button>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- ================= Right: AI Predictions & Route Intelligence ================= -->
+                <section class="planner-right">
+                    <!-- Placeholder State (Before Prediction) -->
+                    <div id="placeholderCard" class="placeholder-hero-card">
+                        <div class="placeholder-art">
+                            <div class="art-ring ring-3"></div>
+                            <div class="art-ring ring-2"></div>
+                            <div class="art-ring ring-1"></div>
+                            <div class="art-center-icon">
+                                <i class="fa-solid fa-train-subway"></i>
+                            </div>
+                        </div>
+
+                        <h2>AI Transit Simulation Ready</h2>
+                        <p>
+                            Configure your trip parameters or select a popular corridor to generate accurate crowd forecasting,
+                            platform utilization metrics, and optimal departure recommendations.
+                        </p>
+
+                        <div class="placeholder-features">
+                            <div class="feat-badge">
+                                <i class="fa-solid fa-chart-line"></i>
+                                <span>15-Min Interval Accuracy</span>
+                            </div>
+                            <div class="feat-badge">
+                                <i class="fa-solid fa-route"></i>
+                                <span>Interchange Navigator</span>
+                            </div>
+                            <div class="feat-badge">
+                                <i class="fa-solid fa-shield-halved"></i>
+                                <span>Ensemble Variance Bounds</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Prediction Results Container -->
+                    <div id="resultsContainer" class="results-container" style="display: none;">
+                        <!-- Primary Crowd Intelligence Banner -->
+                        <div class="result-hero-card">
+                            <div class="hero-top-row">
+                                <div class="hero-title-group">
+                                    <span class="hero-subtitle">FORECAST RESULTS</span>
+                                    <h2 id="resultStationName">--</h2>
+                                    <div class="corridor-tag-badge">
+                                        <span id="resultCorridorTag" class="line-pill">Purple Line</span>
+                                    </div>
+                                </div>
+
+                                <div class="crowd-status-badge-container">
+                                    <span class="crowd-status-label">CROWD STATUS</span>
+                                    <div id="crowdLevelBadge" class="crowd-indicator-pill crowd-moderate">
+                                        <span class="status-dot-pulse"></span>
+                                        <span id="crowdLevel">Moderate</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Metric Cards Grid -->
+                            <div class="forecast-kpi-grid">
+                                <div class="forecast-kpi-card">
+                                    <div class="kpi-icon-box"><i class="fa-solid fa-users"></i></div>
+                                    <div class="kpi-data">
+                                        <span class="label">Forecasted Arrivals</span>
+                                        <h3 id="passengerCount">--</h3>
+                                        <small class="sub">15-minute window</small>
+                                    </div>
+                                </div>
+
+                                <div class="forecast-kpi-card">
+                                    <div class="kpi-icon-box conf"><i class="fa-solid fa-shield-halved"></i></div>
+                                    <div class="kpi-data">
+                                        <span class="label">AI Confidence</span>
+                                        <h3 id="confidence">--%</h3>
+                                        <small class="sub">100-tree convergence</small>
+                                    </div>
+                                </div>
+
+                                <div class="forecast-kpi-card">
+                                    <div class="kpi-icon-box time"><i class="fa-solid fa-clock"></i></div>
+                                    <div class="kpi-data">
+                                        <span class="label">Recommended Departure</span>
+                                        <h3 id="recommendedTime">--</h3>
+                                        <small class="sub">To minimize delay</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Station Capacity Utilization Progress Bar -->
+                            <div class="utilization-bar-card">
+                                <div class="utilization-label-row">
+                                    <span>Station Capacity Load</span>
+                                    <span id="utilizationPctText">--% Capacity</span>
+                                </div>
+                                <div class="progress-track">
+                                    <div id="utilizationFill" class="progress-fill" style="width: 50%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Multi-Line Route & Interchange Telemetry -->
+                        <div class="result-card route-telemetry-card">
+                            <div class="card-title-bar">
+                                <div class="card-title-group">
+                                    <div class="card-icon"><i class="fa-solid fa-diamond-turn-right"></i></div>
+                                    <div>
+                                        <h3>Journey Route & Interchange Telemetry</h3>
+                                        <p>Step-by-step corridor path between selected stations</p>
+                                    </div>
+                                </div>
+                                <div id="routeTransferBadge" class="transfer-pill">Direct Line</div>
+                            </div>
+
+                            <div class="journey-stepper-container">
+                                <!-- Origin -->
+                                <div class="stepper-node">
+                                    <div class="node-marker origin"></div>
+                                    <div class="node-info">
+                                        <span class="node-type">DEPARTURE</span>
+                                        <h4 id="sourceStation">--</h4>
+                                        <small id="sourceLineDetail">Purple Line</small>
+                                    </div>
+                                </div>
+
+                                <!-- Dynamic Interchanges / Line changes -->
+                                <div id="interchangeStepContainer"></div>
+
+                                <!-- Destination -->
+                                <div class="stepper-node">
+                                    <div class="node-marker destination"></div>
+                                    <div class="node-info">
+                                        <span class="node-type">ARRIVAL</span>
+                                        <h4 id="destinationStation">--</h4>
+                                        <small id="destLineDetail">Purple Line</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Route Stats Strip -->
+                            <div class="route-stats-strip">
+                                <div class="stat-unit">
+                                    <i class="fa-solid fa-train-subway"></i>
+                                    <div>
+                                        <span class="val" id="routeTotalStations">--</span>
+                                        <span class="lbl">Stations</span>
+                                    </div>
+                                </div>
+                                <div class="stat-unit">
+                                    <i class="fa-solid fa-ruler-combined"></i>
+                                    <div>
+                                        <span class="val" id="routeDistance">-- km</span>
+                                        <span class="lbl">Est. Distance</span>
+                                    </div>
+                                </div>
+                                <div class="stat-unit">
+                                    <i class="fa-solid fa-stopwatch"></i>
+                                    <div>
+                                        <span class="val" id="routeDuration">-- mins</span>
+                                        <span class="lbl">Est. Ride Time</span>
+                                    </div>
+                                </div>
+                                <div class="stat-unit">
+                                    <i class="fa-solid fa-arrows-split-up-and-left"></i>
+                                    <div>
+                                        <span class="val" id="routeInterchangeCount">0</span>
+                                        <span class="lbl">Transfers</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step-by-Step Interchange Guidance Banner (if interchange exists) -->
+                            <div id="interchangeInstructionBox" class="interchange-callout-box" style="display:none;">
+                                <div class="callout-icon"><i class="fa-solid fa-person-walking-luggage"></i></div>
+                                <div class="callout-body">
+                                    <strong>Interchange Guidance:</strong>
+                                    <p id="interchangeInstructionText">Change lines at interchange station.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Smart Time Alternatives Comparison Matrix -->
+                        <div class="result-card matrix-card">
+                            <div class="card-title-bar">
+                                <div class="card-title-group">
+                                    <div class="card-icon"><i class="fa-solid fa-chart-simple"></i></div>
+                                    <div>
+                                        <h3>Departure Window Comparison</h3>
+                                        <p>Estimated crowd severity across alternative departure times</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="time-matrix-grid" id="departureMatrix">
+                                <!-- Populated dynamically by JS -->
+                            </div>
+                        </div>
+
+                        <!-- AI Travel Advisory Card -->
+                        <div class="result-card advisory-card">
+                            <div class="card-title-bar">
+                                <div class="card-title-group">
+                                    <div class="card-icon ai"><i class="fa-solid fa-brain"></i></div>
+                                    <div>
+                                        <h3>AI Operational Travel Advice</h3>
+                                        <p>Contextual commute optimization recommendations</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="advisory-content-box">
+                                <div class="advisory-quote">
+                                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                                    <p id="travelAdvice">Your AI recommendation will appear here.</p>
+                                </div>
+
+                                <div class="advisory-actions-row">
+                                    <button type="button" id="openInAssistantBtn" class="btn-action-primary">
+                                        <i class="fa-solid fa-robot"></i> Open in Travel Assistant
+                                    </button>
+                                    <button type="button" id="viewHistoryBtn" class="btn-action-secondary">
+                                        <i class="fa-solid fa-clock-rotate-left"></i> View Prediction History
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
-          </section>
-        </div>
-      </main>
+        </main>
     </div>
 
     <script src="{{ url_for('static', filename='js/planner.js') }}"></script>
-  </body>
+</body>
 </html>

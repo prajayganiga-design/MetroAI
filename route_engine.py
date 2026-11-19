@@ -119,24 +119,86 @@ for station_name, nodes in station_lookup.items():
 def find_station_name(user_input):
     """
     Match user input to a station name in the dataset,
-    ignoring capitalization and surrounding whitespace.
+    supporting exact matches, known aliases, abbreviations,
+    and substring/parenthetical searches.
     """
-
     if not user_input:
         return None
 
-    search_name = " ".join(str(user_input).split()).casefold()
+    raw_input = str(user_input).strip()
+    search_name = " ".join(raw_input.split()).casefold()
 
+    # 1. Exact match (case-insensitive)
     matches = stations_df[
         stations_df["station_name"]
         .astype(str)
         .apply(lambda name: " ".join(name.split()).casefold() == search_name)
     ]
+    if not matches.empty:
+        return matches.iloc[0]["station_name"]
 
-    if matches.empty:
-        return None
+    # 2. Known Transit & Interchange Aliases
+    ALIASES = {
+        "rv road": "Rashtreeya Vidyalaya Road",
+        "r.v. road": "Rashtreeya Vidyalaya Road",
+        "r v road": "Rashtreeya Vidyalaya Road",
+        "rv": "Rashtreeya Vidyalaya Road",
+        "rv road interchange": "Rashtreeya Vidyalaya Road",
+        "majestic": "Nadaprabhu Kempegowda Station (Majestic)",
+        "majestic interchange": "Nadaprabhu Kempegowda Station (Majestic)",
+        "majestic station": "Nadaprabhu Kempegowda Station (Majestic)",
+        "kempegowda": "Nadaprabhu Kempegowda Station (Majestic)",
+        "kempegowda station": "Nadaprabhu Kempegowda Station (Majestic)",
+        "kempegowda majestic": "Nadaprabhu Kempegowda Station (Majestic)",
+        "whitefield": "Whitefield (Kadugodi)",
+        "kadugodi": "Whitefield (Kadugodi)",
+        "jayadeva": "Jayadeva Hospital",
+        "jayadeva interchange": "Jayadeva Hospital",
+        "silk board": "Central Silk Board",
+        "central silk board": "Central Silk Board",
+        "kr puram": "Krishnarajapura (KR Puram)",
+        "k.r. puram": "Krishnarajapura (KR Puram)",
+        "k r puram": "Krishnarajapura (KR Puram)",
+        "kengeri bus stand": "Kengeri Bus Terminal",
+        "kengeri bus stop": "Kengeri Bus Terminal",
+        "chikpet": "Chickpete",
+        "chickpet": "Chickpete",
+        "electronic city": "Electronic City",
+        "electronics city": "Electronic City",
+        "electronic city 1": "Electronic City",
+        "electronic city 2": "Electronic City",
+        "konappana agrahara": "Infosys Foundation Konappana Agrahara",
+        "infosys": "Infosys Foundation Konappana Agrahara",
+        "hebbagodi": "Biocon Hebbagodi",
+        "biocon": "Biocon Hebbagodi",
+        "bommasandra": "Delta Electronics Bommasandra"
+    }
 
-    return matches.iloc[0]["station_name"]
+    if search_name in ALIASES:
+        return ALIASES[search_name]
+
+    # Clean punctuation for soft matching
+    cleaned_input = search_name.replace(".", "").replace("-", " ").replace("(", "").replace(")", "").strip()
+    if cleaned_input in ALIASES:
+        return ALIASES[cleaned_input]
+
+    # 3. Substring / Parenthesis matching
+    unique_names = stations_df["station_name"].dropna().unique()
+    for name in unique_names:
+        name_str = str(name).strip()
+        name_clean = " ".join(name_str.split()).casefold()
+
+        # If user input matches inside parentheses e.g. "Majestic" matches "...(Majestic)"
+        if "(" in name_clean and ")" in name_clean:
+            inside_paren = name_clean[name_clean.find("(") + 1 : name_clean.find(")")].strip()
+            if search_name == inside_paren or cleaned_input == inside_paren:
+                return name_str
+
+        # If search query is a substantial substring of the station name
+        if len(search_name) >= 3 and (search_name in name_clean or name_clean in search_name):
+            return name_str
+
+    return None
 
 # ==========================================
 # FIND ROUTE USING DIJKSTRA
@@ -168,14 +230,17 @@ def find_route(source, destination):
         return {"error": f"Destination station '{destination}' not found."}
 
     if source == destination:
+        start_line = station_lookup[source][0][1] if (source in station_lookup and station_lookup[source]) else "Purple"
         return {
             "source": source,
             "destination": destination,
-            "route": [source],
-            "lines": [],
+            "route": [{"station": source, "line": start_line}],
+            "lines": [start_line],
             "interchanges": [],
             "station_connections": 0,
-            "distance_km": 0
+            "line_transfers": 0,
+            "approximate_distance_km": 0.0,
+            "distance_note": "Origin and destination are the same station."
         }
 
     # State: connection count, current node, path, distance

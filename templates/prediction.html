@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MetroAI | Prediction History</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/prediction.css') }}">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="MetroAI Logo">
+
+            <div class="logo-text">
+                <h2>MetroAI</h2>
+                <p>Operations Center</p>
+            </div>
+        </div>
+
+        <ul>
+            <li onclick="window.location.href='/dashboard'">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+            </li>
+
+            <li onclick="window.location.href='/planner'">
+                <i class="fa-solid fa-brain"></i>
+                AI Journey Planner
+            </li>
+
+            <li onclick="window.location.href='/stations'">
+                <i class="fa-solid fa-train-subway"></i>
+                Stations
+            </li>
+
+            <li onclick="window.location.href='/network'">
+                <i class="fa-solid fa-map-location-dot"></i>
+                Metro Network
+            </li>
+
+            <li onclick="window.location.href='/assistant'">
+                <i class="fa-solid fa-robot"></i>
+                Travel Assistant
+            </li>
+
+            <li onclick="window.location.href='/analytics'">
+                <i class="fa-solid fa-chart-line"></i>
+                Analytics
+            </li>
+
+            <li class="active" onclick="window.location.href='/prediction'">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                Prediction History
+            </li>
+
+            <li onclick="window.location.href='/about'">
+                <i class="fa-solid fa-circle-info"></i>
+                About
+            </li>
+        </ul>
+
+        <div class="version">Version 1.0</div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- HEADER -->
+        <header class="prediction-header">
+
+            <div>
+                <h1>Prediction History & Forecast Archive</h1>
+                <p>Review logged AI crowd predictions, passenger demand assessments, and historical travel recommendations.</p>
+            </div>
+
+            <div class="header-actions">
+                <div class="prediction-header-status">
+                    <span class="prediction-status-dot"></span>
+                    <span>AI Logging Active</span>
+                </div>
+                <button onclick="window.location.href='/planner'" class="btn-primary-action">
+                    <i class="fa-solid fa-plus"></i> New Prediction
+                </button>
+            </div>
+
+        </header>
+
+        <!-- KPI SUMMARY METRICS -->
+        <section class="prediction-metrics-grid">
+            <div class="metric-card">
+                <div class="metric-icon purple"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                <div class="metric-info">
+                    <span class="metric-label">Total Predictions Logged</span>
+                    <h3 id="metricTotal">--</h3>
+                    <small>Cumulative AI inference calls</small>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon red"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                <div class="metric-info">
+                    <span class="metric-label">High Crowd Warnings</span>
+                    <h3 id="metricHighCrowd">--</h3>
+                    <small>High or Very High congestion rate</small>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon emerald"><i class="fa-solid fa-shield-halved"></i></div>
+                <div class="metric-info">
+                    <span class="metric-label">Mean Confidence Score</span>
+                    <h3 id="metricAvgConf">--</h3>
+                    <small>Random Forest ensemble agreement</small>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon blue"><i class="fa-solid fa-location-dot"></i></div>
+                <div class="metric-info">
+                    <span class="metric-label">Top Forecasted Hub</span>
+                    <h3 id="metricTopDest">--</h3>
+                    <small>Most queried terminal or interchange</small>
+                </div>
+            </div>
+        </section>
+
+        <!-- TOOLBAR & FILTERS -->
+        <section class="prediction-toolbar">
+            <div class="toolbar-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" placeholder="Search by station, destination, or line..." />
+            </div>
+
+            <div class="toolbar-filters">
+                <div class="filter-item">
+                    <label for="filterLine">Line:</label>
+                    <select id="filterLine">
+                        <option value="all">All Lines</option>
+                        <option value="Purple">Purple Line</option>
+                        <option value="Green">Green Line</option>
+                        <option value="Yellow">Yellow Line</option>
+                    </select>
+                </div>
+
+                <div class="filter-item">
+                    <label for="filterCrowd">Crowd:</label>
+                    <select id="filterCrowd">
+                        <option value="all">All Levels</option>
+                        <option value="Low">Low</option>
+                        <option value="Moderate">Moderate</option>
+                        <option value="High">High</option>
+                        <option value="Very High">Very High</option>
+                    </select>
+                </div>
+
+                <div class="filter-item">
+                    <label for="sortBy">Sort:</label>
+                    <select id="sortBy">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="passengers_desc">Highest Passengers</option>
+                        <option value="passengers_asc">Lowest Passengers</option>
+                        <option value="confidence">Highest Confidence</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="toolbar-actions">
+                <button id="exportCsvBtn" class="btn-secondary" title="Export current records to CSV">
+                    <i class="fa-solid fa-file-csv"></i> Export CSV
+                </button>
+                <button id="clearHistoryBtn" class="btn-danger-outline" title="Clear all prediction history">
+                    <i class="fa-solid fa-trash-can"></i> Clear
+                </button>
+            </div>
+        </section>
+
+        <!-- TABLE SECTION -->
+        <section class="prediction-table-section">
+            <div class="table-container">
+                <table class="prediction-table">
+                    <thead>
+                        <tr>
+                            <th>Logged At</th>
+                            <th>Journey Route</th>
+                            <th>Corridor</th>
+                            <th>Travel Schedule</th>
+                            <th>Arrivals (15 min)</th>
+                            <th>Crowd Level</th>
+                            <th>AI Confidence</th>
+                            <th>Advice</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="predictionTableBody">
+                        <tr>
+                            <td colspan="9" class="table-loading">
+                                <i class="fa-solid fa-spinner fa-spin"></i> Loading prediction logs...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="table-footer">
+                <span id="recordCountInfo">Showing 0 records</span>
+            </div>
+        </section>
+
+        <!-- DETAIL MODAL -->
+        <div id="detailModal" class="modal-backdrop" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-header">
+                    <div class="modal-title">
+                        <i class="fa-solid fa-brain"></i>
+                        <h3>AI Prediction Diagnostic Report</h3>
+                    </div>
+                    <button id="closeModalBtn" class="modal-close">&times;</button>
+                </div>
+
+                <div class="modal-body" id="modalContent">
+                    <!-- Populated dynamically via JS -->
+                </div>
+
+                <div class="modal-footer">
+                    <button id="modalPlanAgainBtn" class="btn-primary-action">
+                        <i class="fa-solid fa-route"></i> Re-Plan in Journey Planner
+                    </button>
+                    <button id="modalCloseActionBtn" class="btn-secondary">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <footer class="prediction-footer">
+            MetroAI Operations Center · Predictive Analytics & Inference History · Version 1.0
+        </footer>
+
+    </main>
+
+    <script src="{{ url_for('static', filename='js/prediction.js') }}"></script>
+
+</body>
+</html>

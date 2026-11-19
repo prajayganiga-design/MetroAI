@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>MetroAI Dashboard</title>
+    <title>MetroAI | Operations Dashboard</title>
 
     <!-- Google Font -->
     <link
@@ -18,6 +18,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     />
 
+    <!-- Styles -->
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/style.css') }}"
@@ -34,7 +35,6 @@
 
   <body>
     <!-- ================= Sidebar ================= -->
-
     <aside class="sidebar">
       <div class="logo">
         <img
@@ -99,108 +99,219 @@
       <div class="version">Version 1.0</div>
     </aside>
 
-    <!-- ================= Main ================= -->
-
+    <!-- ================= Main Content ================= -->
     <main class="main-content">
-      <!-- ================= HEADER ================= -->
-
-      <header class="top-header">
-        <div class="header-left">
-          <h1>Good Morning 👋</h1>
-
-          <p>MetroAI Operations Control Center</p>
+      <!-- Header -->
+      <header class="dashboard-header">
+        <div class="header-info">
+          <div class="header-badge">
+            <i class="fa-solid fa-train-subway"></i>
+            <span>Namma Metro Operations Center</span>
+          </div>
+          <h1 id="dynamicGreeting">Good Evening 👋</h1>
+          <p>Real-time passenger crowd forecasting, line status, and congestion monitoring.</p>
         </div>
 
-        <div class="header-right">
-          <div class="status">
-            <span class="dot"></span>
-
-            AI Online
+        <div class="header-actions">
+          <div class="live-clock-card" title="Live Transit System Time">
+            <div class="clock-time-wrap">
+              <i class="fa-regular fa-clock"></i>
+              <span id="liveClock">--:--:--</span>
+            </div>
+            <span class="clock-date" id="liveDate">Loading date...</span>
           </div>
 
-          <i class="fa-solid fa-bell"></i>
-
-          <div class="profile">
-            <i class="fa-solid fa-user"></i>
-
-            <span>Admin</span>
+          <div class="status-pill">
+            <span class="status-dot"></span>
+            <span>AI Online</span>
           </div>
+          <button type="button" class="btn-primary" onclick="window.location.href='/planner'">
+            <i class="fa-solid fa-brain"></i>
+            <span>Predict Demand</span>
+          </button>
         </div>
       </header>
 
-      <!-- ================= STATS ================= -->
-
+      <!-- 4 Core Metric Cards -->
       <section class="stats-grid">
-        <div class="stat-card stations">
-          <i class="fa-solid fa-train-subway"></i>
-
-          <h2>85</h2>
-
-          <p>Metro Stations</p>
+        <div class="stat-card" onclick="window.location.href='/stations'" title="View all stations">
+          <div class="stat-icon purple">
+            <i class="fa-solid fa-train-subway"></i>
+          </div>
+          <div class="stat-details">
+            <span class="stat-label">Total Stations</span>
+            <h2 id="kpiStations">85</h2>
+            <small>3 Active Lines · 96 km</small>
+          </div>
         </div>
 
-        <div class="stat-card passengers">
-          <i class="fa-solid fa-users"></i>
-
-          <h2>12,540</h2>
-
-          <p>Today's Passengers</p>
+        <div class="stat-card" onclick="window.location.href='/analytics'" title="View analytics">
+          <div class="stat-icon amber">
+            <i class="fa-solid fa-gauge-high"></i>
+          </div>
+          <div class="stat-details">
+            <span class="stat-label">Network Load</span>
+            <h2 id="kpiNetworkLoad">84%</h2>
+            <small id="kpiPeakStatus">Evening Peak Rush</small>
+          </div>
         </div>
 
-        <div class="stat-card predictions">
-          <i class="fa-solid fa-brain"></i>
-
-          <h2>352</h2>
-
-          <p>Predictions Today</p>
+        <div class="stat-card" onclick="window.location.href='/prediction'" title="View prediction history">
+          <div class="stat-icon emerald">
+            <i class="fa-solid fa-brain"></i>
+          </div>
+          <div class="stat-details">
+            <span class="stat-label">Model Confidence</span>
+            <h2 id="kpiConfidence">96.8%</h2>
+            <small>Random Forest (100 Trees)</small>
+          </div>
         </div>
 
-        <div class="stat-card alerts">
-          <i class="fa-solid fa-triangle-exclamation"></i>
-
-          <h2>4</h2>
-
-          <p>Active Alerts</p>
-        </div>
-      </section>
-
-      <!-- ================= METRO STATUS ================= -->
-
-      <section class="metro-status">
-        <h2>🚇 Live Metro Status</h2>
-
-        <div class="line">
-          <span>Purple Line</span>
-
-          <span class="busy">Busy</span>
-        </div>
-
-        <div class="line">
-          <span>Green Line</span>
-
-          <span class="normal">Normal</span>
-        </div>
-
-        <div class="line">
-          <span>Yellow Line</span>
-
-          <span class="moderate">Moderate</span>
+        <div class="stat-card" onclick="window.location.href='/assistant'" title="Open Travel Assistant">
+          <div class="stat-icon cyan">
+            <i class="fa-solid fa-arrows-split-up-and-left"></i>
+          </div>
+          <div class="stat-details">
+            <span class="stat-label">Interchange Hubs</span>
+            <h2>3 Hubs</h2>
+            <small>Majestic · RV Road · Jayadeva</small>
+          </div>
         </div>
       </section>
 
-      <!-- ================= RECENT ALERTS ================= -->
+      <!-- Main Operational Layout -->
+      <div class="dashboard-grid">
+        <!-- Left: Line Status & Capacity -->
+        <section class="card-section">
+          <div class="card-section-title">
+            <div class="title-with-icon">
+              <i class="fa-solid fa-route icon-purple"></i>
+              <div>
+                <h3>🚇 Live Metro Lines Status</h3>
+                <p>Real-time headway frequency and capacity utilization</p>
+              </div>
+            </div>
+            <span class="badge-headway"><i class="fa-solid fa-stopwatch"></i> Headway Adherence: 98.6%</span>
+          </div>
 
-      <section class="recent-alerts">
-        <h2>Recent Alerts</h2>
+          <div class="lines-list" id="linesListContainer">
+            <!-- Purple Line -->
+            <div class="line-status-item purple">
+              <div class="line-item-top">
+                <div class="line-name-wrap">
+                  <span class="line-dot purple"></span>
+                  <strong>Purple Line</strong>
+                  <span class="line-terminal">Challaghatta ⇄ Whitefield</span>
+                </div>
+                <span class="line-status-badge busy" id="purpleStatus">Busy</span>
+              </div>
+              <div class="line-meta-row">
+                <span><i class="fa-solid fa-train"></i> 32 Trains Active</span>
+                <span><i class="fa-solid fa-clock"></i> Headway: 4.0 min</span>
+                <span id="purpleLoadText">78% Load</span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill purple" id="purpleBar" style="width: 78%;"></div>
+              </div>
+            </div>
 
-        <ul>
-          <li>🚨 High crowd predicted at Majestic Station</li>
+            <!-- Green Line -->
+            <div class="line-status-item green">
+              <div class="line-item-top">
+                <div class="line-name-wrap">
+                  <span class="line-dot green"></span>
+                  <strong>Green Line</strong>
+                  <span class="line-terminal">Nagasandra ⇄ Silk Institute</span>
+                </div>
+                <span class="line-status-badge normal" id="greenStatus">Normal</span>
+              </div>
+              <div class="line-meta-row">
+                <span><i class="fa-solid fa-train"></i> 24 Trains Active</span>
+                <span><i class="fa-solid fa-clock"></i> Headway: 5.0 min</span>
+                <span id="greenLoadText">62% Load</span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill green" id="greenBar" style="width: 62%;"></div>
+              </div>
+            </div>
 
-          <li>🚆 Purple Line delayed by 4 minutes</li>
+            <!-- Yellow Line -->
+            <div class="line-status-item yellow">
+              <div class="line-item-top">
+                <div class="line-name-wrap">
+                  <span class="line-dot yellow"></span>
+                  <strong>Yellow Line</strong>
+                  <span class="line-terminal">RV Road ⇄ Bommasandra</span>
+                </div>
+                <span class="line-status-badge moderate" id="yellowStatus">Moderate</span>
+              </div>
+              <div class="line-meta-row">
+                <span><i class="fa-solid fa-train"></i> 10 Trains Active</span>
+                <span><i class="fa-solid fa-clock"></i> Headway: 7.0 min</span>
+                <span id="yellowLoadText">48% Load</span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill yellow" id="yellowBar" style="width: 48%;"></div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-          <li>✅ Passenger prediction completed successfully</li>
-        </ul>
-      </section>
+        <!-- Right: Congestion Alerts & Quick Actions -->
+        <section class="card-section">
+          <div class="card-section-title">
+            <div class="title-with-icon">
+              <i class="fa-solid fa-bell icon-amber"></i>
+              <div>
+                <h3>🚨 Active Congestion Alerts</h3>
+                <p>Live commuter influx and operational advisories</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="alerts-list">
+            <div class="alert-item high-alert">
+              <div class="alert-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+              <div class="alert-text">
+                <strong>High Crowd Predicted at Majestic Station</strong>
+                <p>Interchange platform load elevated during peak rush. Standby rakes ready.</p>
+              </div>
+            </div>
+
+            <div class="alert-item info-alert">
+              <div class="alert-icon"><i class="fa-solid fa-cloud"></i></div>
+              <div class="alert-text">
+                <strong>Weather Impact Advisory</strong>
+                <p>Cloudy weather across East Corridor. Platform dwell times nominal.</p>
+              </div>
+            </div>
+
+            <div class="alert-item success-alert">
+              <div class="alert-icon"><i class="fa-solid fa-circle-check"></i></div>
+              <div class="alert-text">
+                <strong>AI Prediction Engine Synchronized</strong>
+                <p>Random Forest model running with sub-50ms inference latency.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Navigation Actions -->
+          <div class="quick-nav-strip">
+            <button type="button" class="quick-nav-btn" onclick="window.location.href='/planner'">
+              <i class="fa-solid fa-brain"></i> AI Journey Planner
+            </button>
+            <button type="button" class="quick-nav-btn" onclick="window.location.href='/assistant'">
+              <i class="fa-solid fa-robot"></i> Travel Assistant
+            </button>
+            <button type="button" class="quick-nav-btn" onclick="window.location.href='/analytics'">
+              <i class="fa-solid fa-chart-line"></i> Analytics Map
+            </button>
+          </div>
+        </section>
+      </div>
     </main>
+
+    <!-- Script -->
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
   </body>
 </html>
